@@ -14,7 +14,6 @@ namespace D2Store.Controllers
     public class AuthorizationController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthorizationController(UserManager<ApplicationUser> userManager,
@@ -23,12 +22,11 @@ namespace D2Store.Controllers
             IConfiguration configuration)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _configuration = configuration;
         }
 
-        [HttpPost("{Register}")]
-        public async Task<IActionResult> Registration([FromBody]RegisterModel registerModel, string role)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Registration([FromBody]RegisterModel registerModel)
         {
             var userExist = await _userManager.FindByEmailAsync(registerModel.Email);
 
@@ -49,15 +47,6 @@ namespace D2Store.Controllers
             if(!createResult.Succeeded)
             {
                 throw new Exception("Something wrong");
-            }
-
-            if (await _roleManager.RoleExistsAsync(role))
-            {
-                await _userManager.AddToRoleAsync(user, role);
-            }
-            else
-            {
-                return BadRequest("This role doesn`t exists.");
             }
 
             return Ok();
