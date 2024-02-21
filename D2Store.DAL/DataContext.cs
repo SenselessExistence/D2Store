@@ -3,7 +3,6 @@ using D2Store.Domain.Entities.Lots;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Reflection.Emit;
 
 namespace D2Store.DAL
 {
@@ -18,11 +17,13 @@ namespace D2Store.DAL
 
         public virtual DbSet<Lot> Lots { get; set; }
 
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<ClientProfile> UserProfiles { get; set; }
 
         public virtual DbSet<Item> Items { get; set; }
 
-        public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+
+        public virtual DbSet<Hero> Heroes { get; set; }
 
 
 

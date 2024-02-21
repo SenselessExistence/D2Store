@@ -14,8 +14,6 @@ namespace D2Store.Initialization
 
             services.AddScoped<AppInitializer>();
             services.AddScoped<DataContext>();
-
-            
         }
     }
 }

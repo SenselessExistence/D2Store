@@ -25,7 +25,7 @@ namespace D2Store.DAL.Repository
             return entity;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _context.Set<T>()
                 .FirstOrDefaultAsync(x => x.Id == id);

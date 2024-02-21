@@ -6,6 +6,8 @@
 
         public int ItemId { get; set; }
 
+        public double Price { get; set; }
+
         public int CustomerId { get; set; }
     }
 }

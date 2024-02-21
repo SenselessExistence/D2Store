@@ -9,7 +9,7 @@ namespace D2Store.DAL.Repository.Interfaces
 
         Task<T> UpdateAsync(T entity);
 
-        Task<T> GetById(int id);
+        Task<T> GetByIdAsync(int id);
 
         Task<bool> RemoveByIdAsync(int id);
 
