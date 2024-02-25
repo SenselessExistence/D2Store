@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\D2Store.Common\D2Store.Common.csproj" />
     <ProjectReference Include="..\D2Store.Domain\D2Store.Domain.csproj" />
   </ItemGroup>
 

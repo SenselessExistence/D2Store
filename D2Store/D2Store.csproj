@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\D2Store.Business\D2Store.Business.csproj" />
     <ProjectReference Include="..\D2Store.Common\D2Store.Common.csproj" />
     <ProjectReference Include="..\D2Store.DAL\D2Store.DAL.csproj" />
   </ItemGroup>

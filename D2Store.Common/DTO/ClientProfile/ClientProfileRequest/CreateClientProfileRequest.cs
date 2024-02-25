@@ -1,10 +1,9 @@
-﻿namespace D2Store.Domain.Entities
+﻿namespace D2Store.Common.DTO.ClientProfile.ClientProfileRequest
 {
-    public class ClientProfile : BaseEntity
+    public class CreateClientProfileRequest
     {
+
         public int ClientId { get; set; }
-        
-        public Client Client { get; set; }
 
         public int Age { get; set; }
 
