@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace D2Store.DAL
 {
-    public class DataContext : IdentityDbContext<ApplicationUser>
+    public class DataContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

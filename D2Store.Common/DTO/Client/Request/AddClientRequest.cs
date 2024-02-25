@@ -2,6 +2,6 @@
 {
     public class AddClientRequest
     {
-
+        public int Id { get; set; }
     }
 }

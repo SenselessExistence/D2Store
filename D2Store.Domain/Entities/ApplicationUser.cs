@@ -2,7 +2,7 @@
 
 namespace D2Store.Domain.Entities
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
 
     }

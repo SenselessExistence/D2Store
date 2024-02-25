@@ -34,8 +34,4 @@
     <ProjectReference Include="..\D2Store.DAL\D2Store.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AutoMapperProfiles\" />
-  </ItemGroup>
-
 </Project>

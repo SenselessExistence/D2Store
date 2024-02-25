@@ -13,8 +13,5 @@ namespace D2Store.Common.DTO.Authentication
         [Required]
         public string Password { get; set; }
 
-        public string PhoneNumber { get; set; }
-
-
     }
 }

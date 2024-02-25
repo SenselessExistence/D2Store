@@ -1,3 +1,4 @@
+using AutoMapper;
 using D2Store.DAL;
 using D2Store.DAL.AppInitializer;
 using D2Store.Domain.Entities;
@@ -9,9 +10,28 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(m => m.MigrationsAssembly("D2Store"));
+});
 
-ServiceBuilder.BuildServices(builder.Services);
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+})
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAutoMapper();
+
+IMapper mapper = ServiceBuilder.BuildMapper();
+
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -36,11 +56,10 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.UseSqlServer(m => m.MigrationsAssembly("D2Store"));
-});
+ServiceBuilder.BuildServices(builder.Services);
+
+var app = builder.Build();
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -52,28 +71,12 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-{
-    options.User.RequireUniqueEmail = true;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-})
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders();
-
-
-    var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
 else
 {
     app.UseSwagger();
@@ -83,13 +86,24 @@ else
     });
 }
 
-app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "D2Store API V1");
+});
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
 
 app.MapControllers();
 

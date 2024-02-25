@@ -1,12 +1,15 @@
-﻿using D2Store.Business.Services.Interfaces;
+﻿using AutoMapper;
+using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Authentication;
 using D2Store.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using IAuthorizationService = D2Store.Business.Services.Interfaces.IAuthorizationService;
 
 namespace D2Store.Controllers
 {
@@ -14,14 +17,33 @@ namespace D2Store.Controllers
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IConfiguration _configuration;
-  
+        private readonly IAuthorizationService _authorizationService;
+        private readonly IMapper _mapper;
 
-        public AuthorizationController()
+
+        public AuthorizationController(IAuthorizationService authorizationService,
+            IMapper mapper)
         {
-
+            _authorizationService = authorizationService;
+            _mapper = mapper;
         }
 
+        [HttpPost]
+        [Route("Register")]
+        public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
+        {
+            var result = await _authorizationService.Register(registerModel);
 
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login(LoginModel loginModel)
+        {
+            var result = await _authorizationService.Login(loginModel);
+
+            return result == null ? Unauthorized() : Ok(result);
+        }
+    }
 }
