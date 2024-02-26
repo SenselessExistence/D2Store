@@ -1,4 +1,5 @@
-﻿using D2Store.Common.DTO.ClientProfile.Service;
+﻿using D2Store.Common.DTO.Cart;
+using D2Store.Common.DTO.ClientProfile.Service;
 
 namespace D2Store.Common.DTO.Client
 {
@@ -7,5 +8,7 @@ namespace D2Store.Common.DTO.Client
         public int UserId { get; set; }
 
         public ClientProfileDTO Profile { get; set; }
+
+        public CartDTO Cart { get; set; }
     }
 }

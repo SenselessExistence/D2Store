@@ -8,5 +8,7 @@
 
         public ClientProfile Profile { get; set; }
 
+        public Cart Cart { get; set; }
+
     }
 }

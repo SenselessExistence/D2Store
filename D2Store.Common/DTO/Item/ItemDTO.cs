@@ -1,8 +1,8 @@
 ﻿using D2Store.Domain.Enumerables;
 
-namespace D2Store.Domain.Entities
+namespace D2Store.Common.DTO.Item
 {
-    public class Item : BaseEntity
+    public class ItemDTO : BaseEntityDTO
     {
         public int HeroId { get; set; }
 

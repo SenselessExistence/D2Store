@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +28,9 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAutoMapper();
-
 IMapper mapper = ServiceBuilder.BuildMapper();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 
@@ -56,11 +57,6 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-ServiceBuilder.BuildServices(builder.Services);
-
-var app = builder.Build();
-
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -68,8 +64,12 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 });
 
-
 builder.Services.AddAuthorization();
+
+ServiceBuilder.BuildServices(builder.Services);
+
+var app = builder.Build();
+
 
 if (!app.Environment.IsDevelopment())
 {
@@ -103,7 +103,6 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-
 
 app.MapControllers();
 

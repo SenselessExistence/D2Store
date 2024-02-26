@@ -7,11 +7,11 @@ namespace D2Store.DAL.AppInitializer
     public class AppInitializer
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly DataContext _dataContext;
 
         public AppInitializer(UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager,
+            RoleManager<ApplicationRole> roleManager,
             DataContext dataContext)
         {
             _userManager = userManager;
@@ -40,16 +40,16 @@ namespace D2Store.DAL.AppInitializer
 
         private async Task<IdentityResult> CreateRolesAsync()
         {
-            List<IdentityRole> roles = new List<IdentityRole>()
+            List<ApplicationRole> roles = new List<ApplicationRole>()
             {
-                new IdentityRole {Name = "Admin", NormalizedName = "ADMINISTRATOR"},
-                new IdentityRole {Name = "Moder", NormalizedName = "MODERATOR"},
-                new IdentityRole {Name = "User", NormalizedName = "USER"}
+                new ApplicationRole {Name = "Admin", NormalizedName = "ADMINISTRATOR"},
+                new ApplicationRole {Name = "Moder", NormalizedName = "MODERATOR"},
+                new ApplicationRole {Name = "User", NormalizedName = "USER"}
             };
 
             IdentityResult identityResult = null;
 
-            foreach (IdentityRole role in roles)
+            foreach (ApplicationRole role in roles)
             {
                 identityResult = await _roleManager.CreateAsync(role);
             }

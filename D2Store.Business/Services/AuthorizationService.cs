@@ -40,9 +40,9 @@ namespace D2Store.Business.Services
 
         public async Task<bool> Register(RegisterModel registerClient)
         {
-            var clientExist = _userManager.FindByEmailAsync(registerClient.Email);
+            var clientExist = await _userManager.FindByEmailAsync(registerClient.Email);
 
-            if(clientExist is not null)
+            if (clientExist != null)
             {
                 throw new Exception("User with that Email already exist");
             }
@@ -54,14 +54,14 @@ namespace D2Store.Business.Services
                 UserName = registerClient.Username
             };
 
-            var result = _userManager.CreateAsync(user,registerClient.Password);
+            var result = await _userManager.CreateAsync(user,registerClient.Password);
 
-            if (!result.IsCompletedSuccessfully)
+            if (!result.Succeeded)
             {
                 throw new Exception("Something wrong to create a User.");
             }
 
-            if(await _roleManager.RoleExistsAsync(DefaultRole))
+            if (await _roleManager.RoleExistsAsync(DefaultRole))
             {
                 await _userManager.AddToRoleAsync(user, DefaultRole);
             }
@@ -71,9 +71,9 @@ namespace D2Store.Business.Services
 
             }
 
-            var createdClient = await _userManager.FindByEmailAsync(registerClient.Email);
-
-            var client = await _clientRepository.AddClientAsync(new Client { UserId = createdClient.Id});
+            
+            //Нужно доработать
+            var client = await _clientRepository.AddClientAsync(new Client() { UserId = user.Id});
 
             await InitializeClientData(client.Id);
 

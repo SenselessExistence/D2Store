@@ -18,14 +18,11 @@ namespace D2Store.Controllers
     public class AuthorizationController : ControllerBase
     {
         private readonly IAuthorizationService _authorizationService;
-        private readonly IMapper _mapper;
 
 
-        public AuthorizationController(IAuthorizationService authorizationService,
-            IMapper mapper)
+        public AuthorizationController(IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
-            _mapper = mapper;
         }
 
         [HttpPost]

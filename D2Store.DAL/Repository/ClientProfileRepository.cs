@@ -1,5 +1,4 @@
-﻿using D2Store.Common.DTO.ClientProfile.ClientProfileRequest;
-using D2Store.DAL.Repository.Interfaces;
+﻿using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
 
 namespace D2Store.DAL.Repository

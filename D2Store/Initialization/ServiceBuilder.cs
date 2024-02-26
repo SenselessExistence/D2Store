@@ -16,7 +16,7 @@ namespace D2Store.Initialization
         public static void BuildServices(IServiceCollection services)
         {
             services.AddScoped<UserManager<ApplicationUser>>();
-            services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddScoped<RoleManager<ApplicationRole>>();
 
             services.AddScoped<AppInitializer>();
             services.AddScoped<DataContext>();
