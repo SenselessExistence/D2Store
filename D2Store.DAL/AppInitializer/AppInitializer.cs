@@ -1,4 +1,5 @@
 ﻿using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

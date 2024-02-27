@@ -6,7 +6,7 @@ using D2Store.DAL;
 using D2Store.DAL.AppInitializer;
 using D2Store.DAL.Repository;
 using D2Store.DAL.Repository.Interfaces;
-using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace D2Store.Initialization

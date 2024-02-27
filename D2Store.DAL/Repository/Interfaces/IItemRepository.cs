@@ -1,4 +1,4 @@
-﻿using D2Store.Domain.Entities;
+﻿using D2Store.Domain.Entities.Items;
 
 namespace D2Store.DAL.Repository.Interfaces
 {

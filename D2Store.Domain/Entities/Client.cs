@@ -1,14 +1,23 @@
-﻿namespace D2Store.Domain.Entities
+﻿using AutoMapper;
+using D2Store.Domain.Entities.Identity;
+using D2Store.Domain.Entities.Items;
+using D2Store.Domain.Entities.Lots;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace D2Store.Domain.Entities
 {
     public class Client : BaseEntity
     {
-        public int UserId { get; set; }
-
         public ApplicationUser ApplicationUser { get; set; }
 
-        public ClientProfile Profile { get; set; }
+        public ClientProfile ClientProfile { get; set; }
 
-        public Cart Cart { get; set; }
+        public List<ClientItem> ClientItems { get; set; }
 
+        public List<Lot> Lots { get; set; }
+
+        public List<CartLot> CartLots { get; set; }
+
+        public double Balance { get; set; }
     }
 }

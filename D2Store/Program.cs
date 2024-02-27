@@ -1,7 +1,7 @@
 using AutoMapper;
 using D2Store.DAL;
 using D2Store.DAL.AppInitializer;
-using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Identity;
 using D2Store.Initialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.UseSqlServer(m => m.MigrationsAssembly("D2Store"));
+    options.UseSqlServer(m => m.MigrationsAssembly("D2Store.DAL"));
 });
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>

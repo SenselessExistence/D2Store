@@ -1,8 +1,11 @@
 ﻿using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Identity;
+using D2Store.Domain.Entities.Items;
 using D2Store.Domain.Entities.Lots;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Reflection.Emit;
 
 namespace D2Store.DAL
 {
@@ -17,9 +20,15 @@ namespace D2Store.DAL
 
         public virtual DbSet<Lot> Lots { get; set; }
 
-        public virtual DbSet<ClientProfile> UserProfiles { get; set; }
+        public virtual DbSet<CartLot> CartLots { get; set; }
+
+        public virtual DbSet<ClientProfile> ClientProfiles { get; set; }
 
         public virtual DbSet<Item> Items { get; set; }
+
+        public virtual DbSet<RequestedItem> RequestItems { get; set; }
+
+        public virtual DbSet<ClientItem> ClientItems { get; set; }
 
         public virtual DbSet<Client> Clients { get; set; }
 
@@ -30,6 +39,18 @@ namespace D2Store.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Lot>()
+                .HasOne(l => l.SellerClient)
+                .WithMany(c => c.Lots)
+                .HasForeignKey(l => l.SellerClientId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<ClientItem>()
+                .HasOne(ci => ci.Lot)
+                .WithOne(l => l.ClientItem)
+                .HasForeignKey<Lot>(l => l.ClientItemId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
         public async Task<int> Initialize()

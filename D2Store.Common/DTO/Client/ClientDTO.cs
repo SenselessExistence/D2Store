@@ -1,5 +1,6 @@
 ﻿using D2Store.Common.DTO.Cart;
 using D2Store.Common.DTO.ClientProfile.Service;
+using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.Common.DTO.Client
 {
@@ -9,6 +10,6 @@ namespace D2Store.Common.DTO.Client
 
         public ClientProfileDTO Profile { get; set; }
 
-        public CartDTO Cart { get; set; }
+        public CartLot Cart { get; set; }
     }
 }

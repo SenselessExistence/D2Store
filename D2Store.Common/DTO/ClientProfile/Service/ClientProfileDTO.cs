@@ -4,7 +4,7 @@
     {
         public int ClientId { get; set; }
 
-        public int Age { get; set; }
+        public DateTime Birthday { get; set; }
 
         public string FirstName { get; set; }
 

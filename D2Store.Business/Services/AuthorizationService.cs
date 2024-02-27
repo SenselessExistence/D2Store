@@ -2,16 +2,13 @@
 using D2Store.Common.DTO.Authentication;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace D2Store.Business.Services
 {
@@ -71,9 +68,9 @@ namespace D2Store.Business.Services
 
             }
 
-            
-            //Нужно доработать
-            var client = await _clientRepository.AddClientAsync(new Client() { UserId = user.Id});
+            var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
+
+            var client = await _clientRepository.AddClientAsync(new Client() { ApplicationUser = createdUser});
 
             await InitializeClientData(client.Id);
 
@@ -85,7 +82,7 @@ namespace D2Store.Business.Services
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
 
-            if(user is null)
+            if(user != null)
             {
                 throw new Exception("User is not exist");
             }
