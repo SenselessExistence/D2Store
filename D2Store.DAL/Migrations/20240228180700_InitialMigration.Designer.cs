@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240227212211_InitMigration")]
-    partial class InitMigration
+    [Migration("20240228180700_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,10 @@ namespace D2Store.DAL.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -282,7 +286,7 @@ namespace D2Store.DAL.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("OwnedItems");
+                    b.ToTable("ClientItems");
                 });
 
             modelBuilder.Entity("D2Store.Domain.Entities.Items.Item", b =>

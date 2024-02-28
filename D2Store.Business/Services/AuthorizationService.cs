@@ -48,7 +48,7 @@ namespace D2Store.Business.Services
             {
                 Email = registerClient.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = registerClient.Username
+                UserName = registerClient.Nickname
             };
 
             var result = await _userManager.CreateAsync(user,registerClient.Password);
@@ -70,9 +70,13 @@ namespace D2Store.Business.Services
 
             var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
 
-            var client = await _clientRepository.AddClientAsync(new Client() { ApplicationUser = createdUser});
+            var client = await _clientRepository.AddClientAsync(new Client()
+            {
+                Nickname = registerClient.Nickname,
+                ApplicationUser = user
+            });
 
-            await InitializeClientData(client.Id);
+            await InitializeClientData(client);
 
             return true;
 
@@ -82,7 +86,7 @@ namespace D2Store.Business.Services
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
 
-            if(user != null)
+            if (user == null)
             {
                 throw new Exception("User is not exist");
             }
@@ -130,12 +134,13 @@ namespace D2Store.Business.Services
             return token;
         }
 
-        private async Task InitializeClientData(int id)
+        private async Task InitializeClientData(Client client)
         {
             var profile = new ClientProfile
             {
-                ClientId = id,
-                FirstName = $"User{id}"
+                ClientId = client.Id,
+                UserName = client.Nickname,
+                FirstName = $"User{client.Id}"
             };
 
             await _clientProfileRepository.CreateProfileAsync(profile);

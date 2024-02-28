@@ -1,20 +1,27 @@
 ﻿using D2Store.Common.DTO.Cart;
+using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities.Items;
 using D2Store.Domain.Entities.Lots;
 using Microsoft.EntityFrameworkCore;
 
 namespace D2Store.DAL.Repository
 {
-    public class CartLotRepository : BaseRepository<CartLot>
+    public class CartLotRepository : BaseRepository<CartLot>, ICartLotRepository
     {
         public CartLotRepository(DataContext context) : base(context)
         {
             
         }
 
-        public async Task<CartLot> AddLotToCartAsync(CartLot cartLot)
+        public async Task<CartLot> AddLotToCartAsync(Lot lot, int clientId)
         {
-            return await AddAsync(cartLot);
+            var createdCartLot = new CartLot()
+            {
+                ClientId = clientId,
+                LotId = lot.Id
+            };
+
+            return await AddAsync(createdCartLot);
         }
 
         public async Task<bool> RemoveLotFromCartAsync(int lotId)
@@ -40,7 +47,7 @@ namespace D2Store.DAL.Repository
             return true;
         }
 
-        public async Task<List<CartLotDTO>> GetAllCartLots(int clientId)
+        public async Task<List<CartLotDTO>> GetAllCartLotsByClientIdAsync(int clientId)
         {
             var sortedLots = await _context.CartLots
                 .Where(cl => cl.ClientId == clientId)
@@ -48,14 +55,14 @@ namespace D2Store.DAL.Repository
                     cl => cl.LotId,
                     l => l.Id,
                     (cl, l) => l)
-                .Join(_context.OwnedItems,
+                .Join(_context.ClientItems,
                 l => l.ClientItemId,
-                oi => oi.Id,
-                (l, oi) => new { Lot = l, OwnedItem = oi })
+                ci => ci.Id,
+                (l, ci) => new { Lot = l, OwnedItem = ci })
                 .Join(_context.Items,
-                oi => oi.OwnedItem.ItemId,
+                ci => ci.OwnedItem.ItemId,
                 i => i.Id,
-                (oi, i) => new { Item = i, Lot = oi.Lot })
+                (ci, i) => new { Item = i, Lot = ci.Lot })
                 .Select(dto => new CartLotDTO
                 {
                     PictureURL = dto.Item.PictureURL,

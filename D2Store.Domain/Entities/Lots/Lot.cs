@@ -14,6 +14,6 @@ namespace D2Store.Domain.Entities.Lots
 
         public double Price { get; set; }
 
-        public DateTime SellDate { get; set; }
+        public DateTime? SellDate { get; set; }
     }
 }

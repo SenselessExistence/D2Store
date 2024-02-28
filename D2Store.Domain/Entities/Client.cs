@@ -8,6 +8,8 @@ namespace D2Store.Domain.Entities
 {
     public class Client : BaseEntity
     {
+        public string Nickname { get; set; }
+
         public ApplicationUser ApplicationUser { get; set; }
 
         public ClientProfile ClientProfile { get; set; }

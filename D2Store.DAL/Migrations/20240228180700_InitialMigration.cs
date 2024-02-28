@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace D2Store.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -196,6 +196,7 @@ namespace D2Store.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Nickname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     Balance = table.Column<double>(type: "float", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -268,7 +269,7 @@ namespace D2Store.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OwnedItems",
+                name: "ClientItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -281,15 +282,15 @@ namespace D2Store.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OwnedItems", x => x.Id);
+                    table.PrimaryKey("PK_ClientItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OwnedItems_Clients_ClientId",
+                        name: "FK_ClientItems_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OwnedItems_Items_ItemId",
+                        name: "FK_ClientItems_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
@@ -344,14 +345,14 @@ namespace D2Store.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Lots", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Lots_ClientItems_ClientItemId",
+                        column: x => x.ClientItemId,
+                        principalTable: "ClientItems",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Lots_Clients_SellerClientId",
                         column: x => x.SellerClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Lots_OwnedItems_ClientItemId",
-                        column: x => x.ClientItemId,
-                        principalTable: "OwnedItems",
                         principalColumn: "Id");
                 });
 
@@ -434,6 +435,16 @@ namespace D2Store.DAL.Migrations
                 column: "LotId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClientItems_ClientId",
+                table: "ClientItems",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientItems_ItemId",
+                table: "ClientItems",
+                column: "ItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ClientProfiles_ClientId",
                 table: "ClientProfiles",
                 column: "ClientId",
@@ -459,16 +470,6 @@ namespace D2Store.DAL.Migrations
                 name: "IX_Lots_SellerClientId",
                 table: "Lots",
                 column: "SellerClientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OwnedItems_ClientId",
-                table: "OwnedItems",
-                column: "ClientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OwnedItems_ItemId",
-                table: "OwnedItems",
-                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RequestItems_ClientId",
@@ -518,7 +519,7 @@ namespace D2Store.DAL.Migrations
                 name: "Lots");
 
             migrationBuilder.DropTable(
-                name: "OwnedItems");
+                name: "ClientItems");
 
             migrationBuilder.DropTable(
                 name: "Clients");

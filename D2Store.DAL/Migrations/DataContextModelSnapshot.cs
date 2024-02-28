@@ -42,6 +42,10 @@ namespace D2Store.DAL.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -279,7 +283,7 @@ namespace D2Store.DAL.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("OwnedItems");
+                    b.ToTable("ClientItems");
                 });
 
             modelBuilder.Entity("D2Store.Domain.Entities.Items.Item", b =>
