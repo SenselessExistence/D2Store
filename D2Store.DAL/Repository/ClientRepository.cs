@@ -5,7 +5,11 @@ namespace D2Store.DAL.Repository
 {
     public class ClientRepository : BaseRepository<Client>, IClientRepository
     {
-        public ClientRepository(DataContext context) : base(context) {  }
+        public ClientRepository(DataContext context) 
+            : base(context)
+        {
+
+        }
 
         public async Task<Client> AddClientAsync(Client client)
         {

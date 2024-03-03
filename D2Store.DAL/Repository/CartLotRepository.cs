@@ -8,20 +8,15 @@ namespace D2Store.DAL.Repository
 {
     public class CartLotRepository : BaseRepository<CartLot>, ICartLotRepository
     {
-        public CartLotRepository(DataContext context) : base(context)
+        public CartLotRepository(DataContext context) 
+            : base(context)
         {
             
         }
 
-        public async Task<CartLot> AddLotToCartAsync(Lot lot, int clientId)
+        public async Task<CartLot> AddLotToCartAsync(CartLot lot)
         {
-            var createdCartLot = new CartLot()
-            {
-                ClientId = clientId,
-                LotId = lot.Id
-            };
-
-            return await AddAsync(createdCartLot);
+            return await AddAsync(lot);
         }
 
         public async Task<bool> RemoveLotFromCartAsync(int lotId)

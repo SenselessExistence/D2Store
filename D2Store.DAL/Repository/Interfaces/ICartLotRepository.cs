@@ -5,7 +5,7 @@ namespace D2Store.DAL.Repository.Interfaces
 {
     public interface ICartLotRepository
     {
-        Task<CartLot> AddLotToCartAsync(Lot lot, int clientId);
+        Task<CartLot> AddLotToCartAsync(CartLot cartLot);
 
         Task<bool> RemoveLotFromCartAsync(int lotId);
 

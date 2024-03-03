@@ -5,7 +5,11 @@ namespace D2Store.DAL.Repository
 {
     public class ItemRepository : BaseRepository<Item>, IItemRepository
     {
-        public ItemRepository(DataContext context) : base(context) { }
+        public ItemRepository(DataContext context)
+            : base(context)
+        {
+
+        }
 
         public async Task<Item> AddItemAsync(Item item)
         {

@@ -5,7 +5,11 @@ namespace D2Store.DAL.Repository
 {
     public class ClientProfileRepository : BaseRepository<ClientProfile>, IClientProfileRepository
     {
-        public ClientProfileRepository(DataContext context) : base(context) { }
+        public ClientProfileRepository(DataContext context) 
+            : base(context)
+        {
+
+        }
         
         public async Task<ClientProfile> CreateProfileAsync(ClientProfile profile)
         {
@@ -22,7 +26,7 @@ namespace D2Store.DAL.Repository
             return await GetByIdAsync(id);
         }
 
-        public async Task<bool> DeleteClientProfileByIdAsync(int id)
+        public async Task<bool> RemoveClientProfileByIdAsync(int id)
         {
             return await RemoveByIdAsync(id);
         }

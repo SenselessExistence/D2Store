@@ -70,13 +70,7 @@ namespace D2Store.Business.Services
 
             var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
 
-            var client = await _clientRepository.AddClientAsync(new Client()
-            {
-                Nickname = registerClient.Nickname,
-                ApplicationUser = user
-            });
-
-            await InitializeClientData(client);
+            await InitializeClientData(registerClient, user);
 
             return true;
 
@@ -134,8 +128,14 @@ namespace D2Store.Business.Services
             return token;
         }
 
-        private async Task InitializeClientData(Client client)
+        private async Task InitializeClientData(RegisterModel registerModel, ApplicationUser applicationUser)
         {
+            var client = new Client()
+            {
+                ApplicationUser = applicationUser,
+                Nickname = registerModel.Nickname
+            };
+
             var profile = new ClientProfile
             {
                 ClientId = client.Id,

@@ -18,7 +18,7 @@ namespace D2Store.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ClientProfileDTO> CreateClientProfile(ClientProfileDTO profileDTO)
+        public async Task<ClientProfileDTO> AddClientProfileAsync(ClientProfileDTO profileDTO)
         {
             var profileToCreate = _mapper.Map<ClientProfile>(profileDTO);
 
@@ -27,7 +27,7 @@ namespace D2Store.Business.Services
             return _mapper.Map<ClientProfileDTO>(profile);
         }
 
-        public async Task<ClientProfileDTO> UpdateClientProfile(ClientProfileDTO profileDTO)
+        public async Task<ClientProfileDTO> UpdateClientProfileAsync(ClientProfileDTO profileDTO)
         {
             var profileToUpdate = await _clientProfileRepository.GetClientProfileByIdAsync(profileDTO.ClientId);
             
@@ -38,16 +38,16 @@ namespace D2Store.Business.Services
             return _mapper.Map<ClientProfileDTO>(updatedProfile);
         }
 
-        public async Task<ClientProfileDTO> GetClientProfileById(int id)
+        public async Task<ClientProfileDTO> GetClientProfileByIdAsync(int id)
         {
             var profile = await _clientProfileRepository.GetClientProfileByIdAsync(id);
 
             return _mapper.Map<ClientProfileDTO>(profile);
         }
 
-        public async Task<bool> DeleteClientProfileByIdAsync(int id)
+        public async Task<bool> RemoveClientProfileByIdAsync(int id)
         {
-            return await _clientProfileRepository.DeleteClientProfileByIdAsync(id);
+            return await _clientProfileRepository.RemoveClientProfileByIdAsync(id);
         }
 
         private void UpdateProfileData(ClientProfile clientProfile, ClientProfileDTO profileDTO)

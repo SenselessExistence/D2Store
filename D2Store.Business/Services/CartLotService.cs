@@ -9,20 +9,21 @@ namespace D2Store.Business.Services
     public class CartLotService
     {
         private readonly ICartLotRepository _cartLotRepository;
-        private readonly IMapper _mapper;
 
-        public CartLotService(ICartLotRepository cartLotRepository,
-            IMapper mapper)
+        public CartLotService(ICartLotRepository cartLotRepository)
         {
             _cartLotRepository = cartLotRepository;
-            _mapper = mapper;
         }
 
-        public async Task<bool> AddLotToCartAsync(LotDTO lot, int clientId)
+        public async Task<bool> AddLotToCartAsync(CartLotDTO cartLotDTO)
         {
-            var lotToAdd = _mapper.Map<Lot>(lot);
+            var lotToAdd = new CartLot()
+            {
+                ClientId = cartLotDTO.ClientId,
+                LotId = cartLotDTO.LotId
+            };
 
-            await _cartLotRepository.AddLotToCartAsync(lotToAdd, clientId);
+            await _cartLotRepository.AddLotToCartAsync(lotToAdd);
 
             return true;
         }
@@ -41,6 +42,5 @@ namespace D2Store.Business.Services
         {
             return await _cartLotRepository.RemoveAllLotsFromCartAsync(clientId);
         }
-
     }
 }

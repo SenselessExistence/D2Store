@@ -5,7 +5,7 @@ namespace D2Store.Business.Services.Interfaces
 {
     public interface ICartLotService
     {
-        Task<bool> AddLotToCartAsync(LotDTO lot, int clientId);
+        Task<bool> AddLotToCartAsync(CartLotDTO lotToAdd);
 
         Task<List<CartLotDTO>> GetAllCartLotsByClientIdAsync(int clientId);
 

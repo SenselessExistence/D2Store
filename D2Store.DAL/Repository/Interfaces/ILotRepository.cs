@@ -1,19 +1,20 @@
-﻿using D2Store.Domain.Entities.Lots;
+﻿using D2Store.Common.DTO.Lot;
+using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.DAL.Repository.Interfaces
 {
     public interface ILotRepository
     {
-        Task<bool> CreateLotAsync(Lot lot);
+        Task<bool> AddLotAsync(Lot lot);
 
-        Task<bool> UpdateLotByIdAsync(Lot lot);
+        Task<bool> UpdateLotAsync(Lot lot);
 
         Task<Lot> GetLotByIdAsync(int id);
 
         Task<List<Lot>> GetLotsByClientIdAsync(int clientId);
 
-        Task<bool> DeleteLotByIdAsync(int lotId);
+        Task<bool> RemoveLotByIdAsync(int lotId);
 
-        Task<bool> DeleteAllLotsByClientIdAsync(int clientId);
+        Task<bool> RemoveAllLotsByClientIdAsync(int clientId);
     }
 }

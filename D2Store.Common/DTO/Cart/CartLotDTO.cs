@@ -9,5 +9,7 @@
         public int LotId { get; set; }
 
         public double Price { get; set; }
+
+        public int ClientId { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace D2Store.AutoMapperProfiles
         public LotMapperProfile()
         {
             CreateMap<Lot, LotDTO>();
+            CreateMap<LotDTO, Lot>();
         }
     }
 }

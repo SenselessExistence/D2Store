@@ -9,6 +9,5 @@ namespace D2Store.Common.DTO.Lot
         public int SellerClientId { get; set; }
 
         public double Price { get; set; }
-
     }
 }

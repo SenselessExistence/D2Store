@@ -10,6 +10,6 @@ namespace D2Store.DAL.Repository.Interfaces
 
         Task<ClientProfile> GetClientProfileByIdAsync(int id);
 
-        Task<bool> DeleteClientProfileByIdAsync(int id);
+        Task<bool> RemoveClientProfileByIdAsync(int id);
     }
 }

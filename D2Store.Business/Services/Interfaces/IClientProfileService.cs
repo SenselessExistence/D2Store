@@ -4,12 +4,12 @@ namespace D2Store.Business.Services.Interfaces
 {
     public interface IClientProfileService
     {
-        Task<ClientProfileDTO> CreateClientProfile(ClientProfileDTO profileDTO);
+        Task<ClientProfileDTO> AddClientProfileAsync(ClientProfileDTO profileDTO);
 
-        Task<ClientProfileDTO> UpdateClientProfile(ClientProfileDTO profileDTO);
+        Task<ClientProfileDTO> UpdateClientProfileAsync(ClientProfileDTO profileDTO);
 
-        Task<ClientProfileDTO> GetClientProfileById(int id);
+        Task<ClientProfileDTO> GetClientProfileByIdAsync(int id);
 
-        Task<bool> DeleteClientProfileByIdAsync(int id);
+        Task<bool> RemoveClientProfileByIdAsync(int id);
     }
 }
