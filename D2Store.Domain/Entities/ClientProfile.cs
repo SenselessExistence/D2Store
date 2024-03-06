@@ -11,7 +11,7 @@ namespace D2Store.Domain.Entities
 
         public DateTime? Birthday { get; set; }
 
-        public string UserName { get; set; }
+        public string Nickname { get; set; }
 
         public string FirstName { get; set; }
 

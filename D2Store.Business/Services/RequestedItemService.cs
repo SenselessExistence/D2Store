@@ -65,7 +65,9 @@ namespace D2Store.Business.Services
 
         public async Task<bool> RemoveRequestedItemsByClientIdAsync(int clientId)
         {
-            return await _requestedItemRepository.RemoveRequestedItemsByClientIdAsync(clientId);
+            var clientRequestItems = await _requestedItemRepository.GetRequestedItemsByClientIdAsync(clientId);
+
+            return await _requestedItemRepository.RemoveRequestedItemsByClientIdAsync(clientRequestItems);
         }
     }
 }

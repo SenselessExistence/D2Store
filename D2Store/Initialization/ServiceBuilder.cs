@@ -28,6 +28,21 @@ namespace D2Store.Initialization
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IClientService, ClientService>();
+
+            services.AddScoped<IRequestedItemRepository, RequestItemRepository>();
+            services.AddScoped<IRequestedItemService, RequestedItemService>();
+
+            services.AddScoped<ILotRepository, LotRepository>();
+            services.AddScoped<ILotService, LotService>();
+
+            services.AddScoped<ICartLotRepository, CartLotRepository>();
+            services.AddScoped<ICartLotService, CartLotService>();
+
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IItemService, ItemService>();
+
+            services.AddScoped<IHeroRepositoty, HeroRepository>();
+            services.AddScoped<IHeroService, HeroService>();
         }
 
         public static IMapper BuildMapper()

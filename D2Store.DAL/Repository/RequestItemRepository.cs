@@ -37,12 +37,11 @@ namespace D2Store.DAL.Repository
             return await RemoveByIdAsync(requestedItemId);
         }
 
-        public async Task<bool> RemoveRequestedItemsByClientIdAsync(int clientId)
+        public async Task<bool> RemoveRequestedItemsByClientIdAsync(List<RequestedItem> requestedItems)
         {
-            var requestedItems = await _context.RequestItems.Where(ri => ri.ClientId == clientId)
-                .ToListAsync();
+             _context.RequestItems.RemoveRange(requestedItems);
 
-            _context.RemoveRange(requestedItems);
+            await _context.SaveChangesAsync();
 
             return true;
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Cart;
 using D2Store.Common.DTO.Lot;
 using D2Store.DAL.Repository.Interfaces;
@@ -6,7 +7,7 @@ using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.Business.Services
 {
-    public class CartLotService
+    public class CartLotService : ICartLotService
     {
         private readonly ICartLotRepository _cartLotRepository;
 
@@ -19,8 +20,9 @@ namespace D2Store.Business.Services
         {
             var lotToAdd = new CartLot()
             {
+                ExpectedPrice = cartLotDTO.Price,
                 ClientId = cartLotDTO.ClientId,
-                LotId = cartLotDTO.LotId
+                LotId = cartLotDTO.LotId,
             };
 
             await _cartLotRepository.AddLotToCartAsync(lotToAdd);

@@ -10,6 +10,9 @@ namespace D2Store.Domain.Entities
     {
         public string Nickname { get; set; }
 
+        [ForeignKey(nameof(ApplicationUser))]
+        public int UserId { get; set; }
+
         public ApplicationUser ApplicationUser { get; set; }
 
         public ClientProfile ClientProfile { get; set; }

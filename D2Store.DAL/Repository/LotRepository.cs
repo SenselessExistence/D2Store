@@ -49,7 +49,8 @@ namespace D2Store.DAL.Repository
         public async Task<bool> RemoveAllLotsByClientIdAsync(int clientId)
         {
             var clientLots = await _context.Lots.
-                Where(c => c.ClientItem.ClientId == clientId)
+                Where(c => c.ClientItem.ClientId == clientId).
+                Include(c => c.ClientItem)
                 .ToListAsync();
 
             _context.Lots.RemoveRange(clientLots);

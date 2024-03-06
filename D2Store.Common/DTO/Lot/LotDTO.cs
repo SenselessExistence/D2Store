@@ -2,7 +2,7 @@
 
 namespace D2Store.Common.DTO.Lot
 {
-    public class LotDTO
+    public class LotDTO : BaseDTO
     {
         public int ClientItemId { get; set; }
 

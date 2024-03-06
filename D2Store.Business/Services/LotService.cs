@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Lot;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.Business.Services
 {
-    public class LotService
+    public class LotService : ILotService
     {
         private readonly ILotRepository _lotRepository;
         private readonly IMapper _mapper;

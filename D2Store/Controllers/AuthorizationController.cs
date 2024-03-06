@@ -36,7 +36,7 @@ namespace D2Store.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login([FromBody]LoginModel loginModel)
         {
             var result = await _authorizationService.Login(loginModel);
 

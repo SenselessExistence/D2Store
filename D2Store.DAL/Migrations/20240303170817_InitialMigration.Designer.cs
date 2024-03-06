@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240228180700_InitialMigration")]
+    [Migration("20240303170817_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -33,9 +33,6 @@ namespace D2Store.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
@@ -52,9 +49,12 @@ namespace D2Store.DAL.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Clients");
                 });
@@ -418,7 +418,7 @@ namespace D2Store.DAL.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("SellDate")
+                    b.Property<DateTime?>("SellDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SellerClientId")
@@ -544,7 +544,7 @@ namespace D2Store.DAL.Migrations
                 {
                     b.HasOne("D2Store.Domain.Entities.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -17,7 +17,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddItemAsync(ItemDTO itemDTO)
+        public async Task<IActionResult> AddItemAsync([FromBody]ItemDTO itemDTO)
         {
             await _itemService.AddItemAsync(itemDTO);
 
@@ -25,7 +25,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdateItemAsync(ItemDTO itemDTO)
+        public async Task<IActionResult> UpdateItemAsync([FromBody]ItemDTO itemDTO)
         {
             await _itemService.UpdateItemAsync(itemDTO);
 
@@ -33,6 +33,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{itemId}")]
         public async Task<IActionResult> GetItemByIdAsync(int itemId)
         {
             var item = await _itemService.GetItemByIdAsync(itemId);

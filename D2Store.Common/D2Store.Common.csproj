@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\Новая папка1\**" />
+    <EmbeddedResource Remove="DTO\Новая папка1\**" />
+    <None Remove="DTO\Новая папка1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 

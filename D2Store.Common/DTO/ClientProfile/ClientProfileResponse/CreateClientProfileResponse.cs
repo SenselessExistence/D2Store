@@ -1,9 +1,7 @@
 ﻿namespace D2Store.Common.DTO.ClientProfile.ClientProfileResponse
 {
-    public class CreateClientProfileResponse
+    public class CreateClientProfileResponse : BaseDTO
     {
-        public int Id { get; set; }
-
         public int ClientId { get; set; }
 
         public int Age { get; set; }

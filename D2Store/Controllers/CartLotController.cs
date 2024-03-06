@@ -21,7 +21,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLotCartLot(CartLotDTO lotToAdd)
+        public async Task<IActionResult> AddLotCartLot([FromBody]CartLotDTO lotToAdd)
         {
             await _cartLotService.AddLotToCartAsync(lotToAdd);
 
@@ -29,6 +29,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{clientId}")]
         public async Task<IActionResult> GetCartLotsByClientId(int clientId)
         {
             var result = await _cartLotService.GetAllCartLotsByClientIdAsync(clientId);
@@ -37,6 +38,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{lotId}")]
         public async Task<IActionResult> RemoveLotFromCart(int lotId)
         {
             await _cartLotService.RemoveLotFromCartByIdAsync(lotId);
@@ -45,6 +47,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{clientId}")]
         public async Task<IActionResult> RemoveAllLotsFromCartByClientId(int clientId)
         {
             await _cartLotService.RemoveAllLotsFromCartByClientIdAsync(clientId);

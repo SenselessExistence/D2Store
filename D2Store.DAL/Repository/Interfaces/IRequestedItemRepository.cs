@@ -14,6 +14,6 @@ namespace D2Store.DAL.Repository.Interfaces
 
         Task<bool> RemoveRequestedItemByIdAsync(int requestedItemId);
 
-        Task<bool> RemoveRequestedItemsByClientIdAsync(int clientId);
+        Task<bool> RemoveRequestedItemsByClientIdAsync(List<RequestedItem> requestedItems);
     }
 }

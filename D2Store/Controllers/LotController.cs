@@ -17,7 +17,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLotAsync(LotDTO lotDTO)
+        public async Task<IActionResult> AddLotAsync([FromBody]LotDTO lotDTO)
         {
             await _lotService.AddLotAsync(lotDTO);
 
@@ -26,7 +26,7 @@ namespace D2Store.Controllers
 
         [HttpPatch]
         [Route("Update")]
-        public async Task<IActionResult> UpdateLotAsync(LotDTO lotDTO)
+        public async Task<IActionResult> UpdateLotAsync([FromBody]LotDTO lotDTO)
         {
             await _lotService.UpdateLotAsync(lotDTO);
 
@@ -34,6 +34,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{clientId}")]
         public async Task<IActionResult> GetLotsByClientIdAsync(int clientId)
         {
             var result = await _lotService.GetLotsByClientIdAsync(clientId);
@@ -42,6 +43,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{lotId}")]
         public async Task<IActionResult> GetLotByIdAsync(int lotId)
         {
             var result = await _lotService.GetLotByIdAsync(lotId);
@@ -50,6 +52,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{lotId}")]
         public async Task<IActionResult> RemoveLotById(int lotId)
         {
             await _lotService.RemoveLotByIdAsync(lotId);
@@ -58,6 +61,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{clientId}")]
         public async Task<IActionResult> RemoveAllLotsByClientId(int clientId)
         {
             await _lotService.RemoveAllLotsByClientId(clientId);

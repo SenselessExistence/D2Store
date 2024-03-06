@@ -2,7 +2,7 @@
 
 namespace D2Store.Common.DTO.Item
 {
-    public class ItemDTO : BaseEntityDTO
+    public class ItemDTO : BaseDTO
     {
         public int HeroId { get; set; }
 
@@ -11,5 +11,7 @@ namespace D2Store.Common.DTO.Item
         public string Description { get; set; }
 
         public Rarity Rarity { get; set; }
+
+        public string PictureURL { get; set; }
     }
 }

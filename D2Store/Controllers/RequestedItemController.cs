@@ -17,7 +17,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRequestedItemAsync(RequestedItemDTO requestedItemDTO)
+        public async Task<IActionResult> AddRequestedItemAsync([FromBody]RequestedItemDTO requestedItemDTO)
         {
             var requestedItem = await _requestedItemService.AddRequestedItemAsync(requestedItemDTO);
 
@@ -25,7 +25,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdateRequestItemAsync(RequestedItemDTO requestedItemDTO)
+        public async Task<IActionResult> UpdateRequestItemAsync([FromBody]RequestedItemDTO requestedItemDTO)
         {
             var updatedRequestedItem = await _requestedItemService.UpdateRequestedItemAsync(requestedItemDTO);
 
@@ -33,6 +33,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{requestItemId}")]
         public async Task<IActionResult> GetRequestedItemByIdAsync(int requestedItemId)
         {
             var requestedItem = await _requestedItemService.GetRequestedItemByIdAsync(requestedItemId);
@@ -41,6 +42,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{clientId}")]
         public async Task<IActionResult> GetRequestedItemsByClientIdAsync(int clientId)
         {
             var requestedItems = await _requestedItemService.GetRequestedItemsByClientIdAsync(clientId);
@@ -49,6 +51,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{requestItemId}")]
         public async Task<IActionResult> RemoveRequestedItemByIdAsync(int requestedItemId)
         {
             await _requestedItemService.RemoveRequestedItemByIdAsync(requestedItemId);
@@ -57,6 +60,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
+        [Route("{clientId}")]
         public async Task<IActionResult> RemoveRequestedItemsByClientIdAsync(int clientId)
         {
             await _requestedItemService.RemoveRequestedItemsByClientIdAsync(clientId);

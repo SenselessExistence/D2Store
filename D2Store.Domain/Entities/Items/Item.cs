@@ -1,9 +1,11 @@
 ﻿using D2Store.Domain.Enumerables;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace D2Store.Domain.Entities.Items
 {
     public class Item : BaseEntity
     {
+        [ForeignKey(nameof(Hero))]
         public int HeroId { get; set; }
 
         public Hero Hero { get; set; }

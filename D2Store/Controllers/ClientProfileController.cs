@@ -17,7 +17,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddClientProfileAsync(ClientProfileDTO clientProfileDTO)
+        public async Task<IActionResult> AddClientProfileAsync([FromBody] ClientProfileDTO clientProfileDTO)
         {
             var profile = await _clientProfileService.AddClientProfileAsync(clientProfileDTO);
 
@@ -25,7 +25,7 @@ namespace D2Store.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdateClientProfileAsync(ClientProfileDTO clientProfileDTO)
+        public async Task<IActionResult> UpdateClientProfileAsync([FromBody] ClientProfileDTO clientProfileDTO)
         {
             var updatedProfile = await _clientProfileService.UpdateClientProfileAsync(clientProfileDTO);
 
@@ -33,6 +33,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
+        [Route("{clientProfileId}")]
         public async Task<IActionResult> GetClientProfileById(int clientProfileId)
         {
             var profile = await _clientProfileService.GetClientProfileByIdAsync(clientProfileId);

@@ -55,7 +55,10 @@ namespace D2Store.Business.Services
 
             if (!result.Succeeded)
             {
-                throw new Exception("Something wrong to create a User.");
+                foreach (var errors in result.Errors)
+                {
+                    throw new Exception($"Failed to register. {errors.Description}");
+                }
             }
 
             if (await _roleManager.RoleExistsAsync(DefaultRole))
@@ -70,7 +73,7 @@ namespace D2Store.Business.Services
 
             var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
 
-            await InitializeClientData(registerClient, user);
+            await InitializeClientData(registerClient.Nickname, createdUser.Id);
 
             return true;
 
@@ -128,19 +131,21 @@ namespace D2Store.Business.Services
             return token;
         }
 
-        private async Task InitializeClientData(RegisterModel registerModel, ApplicationUser applicationUser)
+        private async Task InitializeClientData(string nickname, int userId)
         {
-            var client = new Client()
+            var client = new Client ()
             {
-                ApplicationUser = applicationUser,
-                Nickname = registerModel.Nickname
+                Nickname = nickname,
+                UserId = userId
             };
+
+            await _clientRepository.AddClientAsync(client);
 
             var profile = new ClientProfile
             {
-                ClientId = client.Id,
-                UserName = client.Nickname,
-                FirstName = $"User{client.Id}"
+                ClientId = userId,
+                Nickname = client.Nickname,
+                FirstName = $"User{userId}"
             };
 
             await _clientProfileRepository.CreateProfileAsync(profile);

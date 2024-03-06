@@ -57,7 +57,7 @@ namespace D2Store.Business.Services
             clientProfile.PhoneNumber = profileDTO.PhoneNumber;
             clientProfile.Birthday = profileDTO.Birthday;
             clientProfile.About = profileDTO.About;
-            clientProfile.UserName = profileDTO.UserName;
+            clientProfile.Nickname = profileDTO.Nickname;
         }
     }
 }
