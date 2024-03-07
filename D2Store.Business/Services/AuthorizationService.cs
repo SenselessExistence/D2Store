@@ -143,8 +143,8 @@ namespace D2Store.Business.Services
 
             var profile = new ClientProfile
             {
-                ClientId = userId,
-                Nickname = client.Nickname,
+                ClientId = client.Id,
+                Nickname = nickname,
                 FirstName = $"User{userId}"
             };
 
