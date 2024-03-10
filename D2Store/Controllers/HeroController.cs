@@ -41,11 +41,21 @@ namespace D2Store.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        [Route("{heroId}")]
-        public async Task<IActionResult> RemoveHeroByIdAsync(int heroId)
+        [HttpGet]
+        [Route("name/{heroName}")]
+        public async Task<IActionResult> GetHeroesByNameAsync(string heroName)
         {
-            await _heroService.RemoveHeroByIdAsync(heroId);
+            var result = await _heroService.GetHeroesByNameAsync(heroName);
+
+            return Ok(result);
+        }
+
+
+        [HttpDelete]
+        [Route("{removeHeroId}")]
+        public async Task<IActionResult> RemoveHeroByIdAsync(int removeHeroId)
+        {
+            await _heroService.RemoveHeroByIdAsync(removeHeroId);
 
             return Ok();
         }

@@ -44,6 +44,11 @@ namespace D2Store.Business.Services
         {
             var requestedItem = await _requestedItemRepository.GetRequestedItemByIdAsync(requestedItemId);
 
+            if(requestedItem == null)
+            {
+                throw new Exception("Request item not found");
+            }
+
             var result = _mapper.Map<RequestedItemDTO>(requestedItem);
 
             return result;

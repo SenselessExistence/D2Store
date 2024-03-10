@@ -43,6 +43,9 @@ namespace D2Store.Initialization
 
             services.AddScoped<IHeroRepositoty, HeroRepository>();
             services.AddScoped<IHeroService, HeroService>();
+
+            services.AddScoped<IClientItemRepository, ClientItemRepository>();
+            services.AddScoped<IClientItemService, ClientItemService>();
         }
 
         public static IMapper BuildMapper()

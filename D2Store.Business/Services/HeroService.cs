@@ -44,7 +44,26 @@ namespace D2Store.Business.Services
         {
             var hero = await _heroRepository.GetHeroByIdAsync(heroId);
 
+            if (hero == null)
+            {
+                throw new Exception("Hero not found");
+            }
+
             var result = _mapper.Map<HeroDTO>(hero);
+
+            return result;
+        }
+
+        public async Task<List<HeroDTO>> GetHeroesByNameAsync(string heroName)
+        {
+            var listHeroes = await _heroRepository.GetHeroesByNameAsync(heroName);
+
+            if (listHeroes.Count == 0)
+            {
+                throw new Exception("Heroes not found");
+            }
+
+            var result = _mapper.Map<List<HeroDTO>>(listHeroes);
 
             return result;
         }

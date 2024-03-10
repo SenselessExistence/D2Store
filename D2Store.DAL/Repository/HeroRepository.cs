@@ -1,5 +1,6 @@
 ﻿using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace D2Store.DAL.Repository
 {
@@ -24,6 +25,12 @@ namespace D2Store.DAL.Repository
         public async Task<Hero> GetHeroByIdAsync(int heroId)
         {
             return await GetByIdAsync(heroId);
+        }
+
+        public async Task<List<Hero>> GetHeroesByNameAsync(string heroName)
+        {
+            return await _context.Heroes.Where(h => h.HeroName.ToUpper() == heroName.ToUpper() || h.HeroName.ToUpper().Contains(heroName.ToUpper()))
+                .ToListAsync();
         }
 
         public async Task<bool> RemoveHeroByIdAsync(int heroId)

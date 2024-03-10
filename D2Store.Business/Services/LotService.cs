@@ -3,6 +3,8 @@ using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Lot;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities.Lots;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace D2Store.Business.Services
 {
@@ -42,6 +44,11 @@ namespace D2Store.Business.Services
         public async Task<LotDTO> GetLotByIdAsync(int lotId)
         {
             var lot = await _lotRepository.GetLotByIdAsync(lotId);
+
+            if (lot == null)
+            {
+                throw new Exception("Lot not found");
+            }
 
             return _mapper.Map<LotDTO>(lot);
         }

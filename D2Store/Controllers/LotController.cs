@@ -34,7 +34,7 @@ namespace D2Store.Controllers
         }
 
         [HttpGet]
-        [Route("{clientId}")]
+        [Route("client/{clientId}")]
         public async Task<IActionResult> GetLotsByClientIdAsync(int clientId)
         {
             var result = await _lotService.GetLotsByClientIdAsync(clientId);
@@ -61,7 +61,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
-        [Route("{clientId}")]
+        [Route("client/{clientId}")]
         public async Task<IActionResult> RemoveAllLotsByClientId(int clientId)
         {
             await _lotService.RemoveAllLotsByClientId(clientId);

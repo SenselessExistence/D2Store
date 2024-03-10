@@ -10,6 +10,8 @@ namespace D2Store.Business.Services.Interfaces
 
         Task<HeroDTO> GetHeroByIdAsync(int heroId);
 
+        Task<List<HeroDTO>> GetHeroesByNameAsync(string heroName);
+
         Task<bool> RemoveHeroByIdAsync(int heroId);
     }
 }

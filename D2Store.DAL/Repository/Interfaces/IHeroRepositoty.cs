@@ -10,6 +10,8 @@ namespace D2Store.DAL.Repository.Interfaces
 
         Task<Hero> GetHeroByIdAsync(int heroId);
 
+        Task<List<Hero>> GetHeroesByNameAsync(string heroName);
+
         Task<bool> RemoveHeroByIdAsync(int heroId);
     }
 }

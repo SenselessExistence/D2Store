@@ -30,6 +30,11 @@ namespace D2Store.Business.Services
         public async Task<ClientProfileDTO> UpdateClientProfileAsync(ClientProfileDTO profileDTO)
         {
             var profileToUpdate = await _clientProfileRepository.GetClientProfileByIdAsync(profileDTO.ClientId);
+
+            if (profileToUpdate == null)
+            {
+                throw new Exception("Profile not found");
+            }
             
             UpdateProfileData(profileToUpdate, profileDTO);
 

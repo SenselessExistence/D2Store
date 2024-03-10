@@ -51,6 +51,22 @@ namespace D2Store.DAL
                 .WithOne(l => l.ClientItem)
                 .HasForeignKey<Lot>(l => l.ClientItemId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Client>()
+                .HasOne(c => c.ClientProfile)
+                .WithOne(cp => cp.Client)
+                .HasForeignKey<ClientProfile>(cp => cp.ClientId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<ClientProfile>()
+                .Property(cp => cp.Nickname)
+                .HasMaxLength(18);
+
+            builder.Entity<ClientProfile>()
+                .Property(cp => cp.About)
+                .HasMaxLength(200);
+
+
         }
 
         public async Task<int> Initialize()
