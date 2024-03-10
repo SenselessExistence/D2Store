@@ -8,8 +8,6 @@ namespace D2Store.Domain.Entities
 {
     public class Client : BaseEntity
     {
-        public string Nickname { get; set; }
-
         [ForeignKey(nameof(ApplicationUser))]
         public int UserId { get; set; }
 

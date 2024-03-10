@@ -235,6 +235,7 @@ var assemblies = [
       { "name": "D2Store.Common.DTO.ClientProfile.ClientProfileResponse.UpdateClientProfileResponse", "rp": "D2Store.Common_UpdateClientProfileResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Common.DTO.ClientProfile.Service.ClientProfileDTO", "rp": "D2Store.Common_ClientProfileDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Common.DTO.Hero.HeroDTO", "rp": "D2Store.Common_HeroDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Item.ClientItemDTO", "rp": "D2Store.Common_ClientItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Common.DTO.Item.ItemDTO", "rp": "D2Store.Common_ItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Common.DTO.Item.RequestedItemDTO", "rp": "D2Store.Common_RequestedItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Common.DTO.Lot.LotDTO", "rp": "D2Store.Common_LotDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -243,15 +244,16 @@ var assemblies = [
     "name": "D2Store.DAL",
     "classes": [
       { "name": "D2Store.DAL.AppInitializer.AppInitializer", "rp": "D2Store.DAL_AppInitializer.html", "cl": 0, "ucl": 43, "cal": 43, "tl": 79, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.DataContext", "rp": "D2Store.DAL_DataContext.html", "cl": 0, "ucl": 29, "cal": 29, "tl": 79, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.DataContext", "rp": "D2Store.DAL_DataContext.html", "cl": 3, "ucl": 37, "cal": 40, "tl": 95, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.EntityConfigurations", "rp": "D2Store.DAL_EntityConfigurations.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.Migrations.DataContextModelSnapshot", "rp": "D2Store.DAL_DataContextModelSnapshot.html", "cl": 0, "ucl": 669, "cal": 669, "tl": 720, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.Migrations.InitialMigration", "rp": "D2Store.DAL_InitialMigration.html", "cl": 0, "ucl": 1141, "cal": 1141, "tl": 1260, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.Repository.BaseRepository<T>", "rp": "D2Store.DAL_BaseRepository_1.html", "cl": 0, "ucl": 21, "cal": 21, "tl": 53, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Migrations.DataContextModelSnapshot", "rp": "D2Store.DAL_DataContextModelSnapshot.html", "cl": 0, "ucl": 675, "cal": 675, "tl": 726, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Migrations.InitialMigration", "rp": "D2Store.DAL_InitialMigration.html", "cl": 0, "ucl": 1149, "cal": 1149, "tl": 1268, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.BaseRepository<T>", "rp": "D2Store.DAL_BaseRepository_1.html", "cl": 10, "ucl": 12, "cal": 22, "tl": 53, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.Repository.CartLotRepository", "rp": "D2Store.DAL_CartLotRepository.html", "cl": 0, "ucl": 41, "cal": 41, "tl": 73, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.Repository.ClientProfileRepository", "rp": "D2Store.DAL_ClientProfileRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ClientItemRepository", "rp": "D2Store.DAL_ClientItemRepository.html", "cl": 0, "ucl": 13, "cal": 13, "tl": 39, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ClientProfileRepository", "rp": "D2Store.DAL_ClientProfileRepository.html", "cl": 6, "ucl": 6, "cal": 12, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.Repository.ClientRepository", "rp": "D2Store.DAL_ClientRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "D2Store.DAL.Repository.HeroRepository", "rp": "D2Store.DAL_HeroRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.HeroRepository", "rp": "D2Store.DAL_HeroRepository.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.Repository.ItemRepository", "rp": "D2Store.DAL_ItemRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.Repository.LotRepository", "rp": "D2Store.DAL_LotRepository.html", "cl": 0, "ucl": 25, "cal": 25, "tl": 61, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.DAL.Repository.RequestItemRepository", "rp": "D2Store.DAL_RequestItemRepository.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 49, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -274,6 +276,10 @@ var assemblies = [
     ]},
   {
     "name": "Microsoft.TestPlatform.Extensions.EventLogCollector",
+    "classes": [
+    ]},
+  {
+    "name": "Moq",
     "classes": [
     ]},
 ];
@@ -318,7 +324,7 @@ var riskHotspots = [
       { "value": 156, "exceeded": true },
     ]},
   {
-    "assembly": "D2Store.DAL", "class": "D2Store.DAL.DataContext", "reportPath": "D2Store.DAL_DataContext.html", "methodName": "Initialize()", "methodShortName": "Initialize()", "fileIndex": 0, "line": 57,
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.DataContext", "reportPath": "D2Store.DAL_DataContext.html", "methodName": "Initialize()", "methodShortName": "Initialize()", "fileIndex": 0, "line": 73,
     "metrics": [
       { "value": 7, "exceeded": false },
       { "value": 0, "exceeded": false },
@@ -344,13 +350,6 @@ var riskHotspots = [
       { "value": 6, "exceeded": false },
       { "value": 0, "exceeded": false },
       { "value": 42, "exceeded": true },
-    ]},
-  {
-    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.BaseRepository<T>", "reportPath": "D2Store.DAL_BaseRepository_1.html", "methodName": "AddAsync()", "methodShortName": "AddAsync()", "fileIndex": 0, "line": 18,
-    "metrics": [
-      { "value": 5, "exceeded": false },
-      { "value": 0, "exceeded": false },
-      { "value": 30, "exceeded": true },
     ]},
   {
     "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.BaseRepository<T>", "reportPath": "D2Store.DAL_BaseRepository_1.html", "methodName": "RemoveByIdAsync()", "methodShortName": "RemoveByIdAsync()", "fileIndex": 0, "line": 44,
