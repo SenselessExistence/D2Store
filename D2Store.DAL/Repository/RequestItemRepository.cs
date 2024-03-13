@@ -29,7 +29,8 @@ namespace D2Store.DAL.Repository
 
         public async Task<List<RequestedItem>> GetRequestedItemsByClientIdAsync(int clientId)
         {
-            return await _context.RequestItems.Where(ri => ri.ClientId == clientId).ToListAsync();
+            return await _context.RequestItems.Where(ri => ri.ClientId == clientId)
+                .ToListAsync();
         }
 
         public async Task<bool> RemoveRequestedItemByIdAsync(int requestedItemId)

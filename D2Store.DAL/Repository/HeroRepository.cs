@@ -29,7 +29,7 @@ namespace D2Store.DAL.Repository
 
         public async Task<List<Hero>> GetHeroesByNameAsync(string heroName)
         {
-            return await _context.Heroes.Where(h => h.HeroName.ToUpper() == heroName.ToUpper() || h.HeroName.ToUpper().Contains(heroName.ToUpper()))
+            return await _context.Heroes.Where(h => h.HeroName.ToUpper().Contains(heroName.ToUpper()))
                 .ToListAsync();
         }
 

@@ -21,15 +21,15 @@
 </tr>
 <tr>
 <th>Assemblies:</th>
-<td class="limit-width right" title="1">1</td>
+<td class="limit-width right" title="6">6</td>
 </tr>
 <tr>
 <th>Classes:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="53">53</td>
 </tr>
 <tr>
 <th>Files:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="23">23</td>
 </tr>
 </table>
 </div>
@@ -38,28 +38,28 @@
 <div class="card">
 <div class="card-header">Line coverage</div>
 <div class="card-body">
-<div class="large">N/A</div>
+<div class="large cardpercentagebar cardpercentagebar99">0%</div>
 <div class="table">
 <table>
 <tr>
 <th>Covered lines:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="15">15</td>
 </tr>
 <tr>
 <th>Uncovered lines:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="2369">2369</td>
 </tr>
 <tr>
 <th>Coverable lines:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="2384">2384</td>
 </tr>
 <tr>
 <th>Total lines:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="3279">3279</td>
 </tr>
 <tr>
 <th>Line coverage:</th>
-<td class="limit-width right" title="N/A">N/A</td>
+<td class="limit-width right" title="15 of 2384">0.6%</td>
 </tr>
 </table>
 </div>
@@ -68,20 +68,20 @@
 <div class="card">
 <div class="card-header">Branch coverage</div>
 <div class="card-body">
-<div class="large">N/A</div>
+<div class="large cardpercentagebar cardpercentagebar97">2%</div>
 <div class="table">
 <table>
 <tr>
 <th>Covered branches:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="1">1</td>
 </tr>
 <tr>
 <th>Total branches:</th>
-<td class="limit-width right" title="0">0</td>
+<td class="limit-width right" title="34">34</td>
 </tr>
 <tr>
 <th>Branch coverage:</th>
-<td class="limit-width right" title="N/A">N/A</td>
+<td class="limit-width right" title="1 of 34">2.9%</td>
 </tr>
 </table>
 </div>
@@ -97,7 +97,169 @@
 </div>
 </div>
 </div>
+<h1>Risk Hotspots</h1>
 <risk-hotspots>
+<div class="table-responsive">
+<table class="overview table-fixed stripped">
+<colgroup>
+<col class="column-min-200" />
+<col class="column-min-200" />
+<col class="column-min-200" />
+<col class="column105" />
+<col class="column105" />
+<col class="column105" />
+</colgroup>
+<thead><tr><th>Assembly</th>
+<th>Class</th>
+<th>Method</th>
+<th>Cyclomatic complexity <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank"><i class="icon-info-circled"></i></a></th>
+<th>NPath complexity <a href="https://modess.io/npath-complexity-cyclomatic-complexity-explained" target="_blank"><i class="icon-info-circled"></i></a></th>
+<th>Crap Score <a href="https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" target="_blank"><i class="icon-info-circled"></i></a></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_InitialMigration.html">D2Store.DAL.Migrations.InitialMigration</a></td>
+<td title="System.Void D2Store.DAL.Migrations.InitialMigration::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)"><a href="D2Store.DAL_InitialMigration.html#file0_line13">Up(...)</a></td><td class="lightred right">33</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">1122</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_DataContextModelSnapshot.html">D2Store.DAL.Migrations.DataContextModelSnapshot</a></td>
+<td title="System.Void D2Store.DAL.Migrations.DataContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)"><a href="D2Store.DAL_DataContextModelSnapshot.html#file0_line17">BuildModel(...)</a></td><td class="lightred right">31</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">992</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_InitialMigration.html">D2Store.DAL.Migrations.InitialMigration</a></td>
+<td title="System.Void D2Store.DAL.Migrations.InitialMigration::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)"><a href="D2Store.DAL_InitialMigration.html#file1_line20">BuildTargetModel(...)</a></td><td class="lightred right">31</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">992</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_AuthorizationService.html">D2Store.Business.Services.AuthorizationService</a></td>
+<td title="Register()"><a href="D2Store.Business_AuthorizationService.html#file0_line39">Register()</a></td><td class="lightgreen right">20</td>
+<td class="lightgreen right">8</td>
+<td class="lightred right">420</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_AuthorizationService.html">D2Store.Business.Services.AuthorizationService</a></td>
+<td title="Login()"><a href="D2Store.Business_AuthorizationService.html#file0_line83">Login()</a></td><td class="lightgreen right">13</td>
+<td class="lightgreen right">4</td>
+<td class="lightred right">182</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_AppInitializer.html">D2Store.DAL.AppInitializer.AppInitializer</a></td>
+<td title="InitializeDefaultData()"><a href="D2Store.DAL_AppInitializer.html#file0_line24">InitializeDefaultData()</a></td><td class="lightgreen right">12</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">156</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_DataContext.html">D2Store.DAL.DataContext</a></td>
+<td title="Initialize()"><a href="D2Store.DAL_DataContext.html#file0_line73">Initialize()</a></td><td class="lightgreen right">7</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">56</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_CartLotRepository.html">D2Store.DAL.Repository.CartLotRepository</a></td>
+<td title="RemoveAllLotsFromCartAsync()"><a href="D2Store.DAL_CartLotRepository.html#file0_line33">RemoveAllLotsFromCartAsync()</a></td><td class="lightgreen right">7</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">56</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_ClientItemService.html">D2Store.Business.Services.ClientItemService</a></td>
+<td title="GetAllClientItemsByClientIdAsync()"><a href="D2Store.Business_ClientItemService.html#file0_line71">GetAllClientItemsByClientIdAsync()</a></td><td class="lightgreen right">6</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">42</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_ClientProfileServices.html">D2Store.Business.Services.ClientProfileServices</a></td>
+<td title="UpdateClientProfileAsync()"><a href="D2Store.Business_ClientProfileServices.html#file0_line31">UpdateClientProfileAsync()</a></td><td class="lightgreen right">6</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">42</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_AppInitializer.html">D2Store.DAL.AppInitializer.AppInitializer</a></td>
+<td title="CreateDefaultAdminAsync()"><a href="D2Store.DAL_AppInitializer.html#file0_line62">CreateDefaultAdminAsync()</a></td><td class="lightgreen right">6</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">42</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_AppInitializer.html">D2Store.DAL.AppInitializer.AppInitializer</a></td>
+<td title="CreateRolesAsync()"><a href="D2Store.DAL_AppInitializer.html#file0_line43">CreateRolesAsync()</a></td><td class="lightgreen right">6</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">42</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_AuthorizationService.html">D2Store.Business.Services.AuthorizationService</a></td>
+<td title="InitializeClientData()"><a href="D2Store.Business_AuthorizationService.html#file0_line135">InitializeClientData()</a></td><td class="lightgreen right">5</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">30</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_RequestedItemService.html">D2Store.Business.Services.RequestedItemService</a></td>
+<td title="RemoveRequestedItemsByClientIdAsync()"><a href="D2Store.Business_RequestedItemService.html#file0_line72">RemoveRequestedItemsByClientIdAsync()</a></td><td class="lightgreen right">5</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">30</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_BaseRepository_1.html">D2Store.DAL.Repository.BaseRepository&lt;T&gt;</a></td>
+<td title="AddAsync()"><a href="D2Store.DAL_BaseRepository_1.html#file0_line18">AddAsync()</a></td><td class="lightgreen right">5</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">30</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_BaseRepository_1.html">D2Store.DAL.Repository.BaseRepository&lt;T&gt;</a></td>
+<td title="RemoveByIdAsync()"><a href="D2Store.DAL_BaseRepository_1.html#file0_line44">RemoveByIdAsync()</a></td><td class="lightgreen right">5</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">30</td>
+</tr>
+<tr>
+<td>D2Store.DAL</td>
+<td><a href="D2Store.DAL_CartLotRepository.html">D2Store.DAL.Repository.CartLotRepository</a></td>
+<td title="RemoveLotFromCartAsync()"><a href="D2Store.DAL_CartLotRepository.html#file0_line23">RemoveLotFromCartAsync()</a></td><td class="lightgreen right">5</td>
+<td class="lightgreen right">0</td>
+<td class="lightred right">30</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_ClientItemService.html">D2Store.Business.Services.ClientItemService</a></td>
+<td title="AddClientItemAsync()"><a href="D2Store.Business_ClientItemService.html#file0_line25">AddClientItemAsync()</a></td><td class="lightgreen right">4</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">20</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_ClientItemService.html">D2Store.Business.Services.ClientItemService</a></td>
+<td title="GetClientItemByIdAsync()"><a href="D2Store.Business_ClientItemService.html#file0_line57">GetClientItemByIdAsync()</a></td><td class="lightgreen right">4</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">20</td>
+</tr>
+<tr>
+<td>D2Store.Business</td>
+<td><a href="D2Store.Business_ClientItemService.html">D2Store.Business.Services.ClientItemService</a></td>
+<td title="UpdateClientItemAsync()"><a href="D2Store.Business_ClientItemService.html#file0_line41">UpdateClientItemAsync()</a></td><td class="lightgreen right">4</td>
+<td class="lightgreen right">2</td>
+<td class="lightred right">20</td>
+</tr>
+</tbody>
+</table>
+</div>
 </risk-hotspots>
 <h1>Coverage</h1>
 <coverage-info>
@@ -120,12 +282,70 @@
 <tr class="header"><th></th><th colspan="6" class="center">Line coverage</th><th colspan="4" class="center">Branch coverage</th></tr>
 <tr><th>Name</th><th class="right">Covered</th><th class="right">Uncovered</th><th class="right">Coverable</th><th class="right">Total</th><th class="center" colspan="2">Percentage</th><th class="right">Covered</th><th class="right">Total</th><th class="center" colspan="2">Percentage</th></tr></thead>
 <tbody>
+<tr><th>D2Store.Business</th><th class="right">15</th><th class="right">297</th><th class="right">312</th><th class="right">692</th><th title="15/312" class="right">4.8%</th><th><table class="coverage"><tr><td class="green covered5">&nbsp;</td><td class="red covered95">&nbsp;</td></tr></table></th><th class="right">1</th><th class="right">30</th><th class="right" title="1/30">3.3%</th><th><table class="coverage"><tr><td class="green covered3">&nbsp;</td><td class="red covered97">&nbsp;</td></tr></table></th></tr>
+<tr><td><a href="D2Store.Business_AuthorizationService.html">D2Store.Business.Services.AuthorizationService</a></td><td class="right">0</td><td class="right">87</td><td class="right">87</td><td class="right">153</td><td title="0/87" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">10</td><td class="right" title="0/10">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_CartLotService.html">D2Store.Business.Services.CartLotService</a></td><td class="right">0</td><td class="right">19</td><td class="right">19</td><td class="right">48</td><td title="0/19" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_ClientItemService.html">D2Store.Business.Services.ClientItemService</a></td><td class="right">0</td><td class="right">41</td><td class="right">41</td><td class="right">91</td><td title="0/41" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">8</td><td class="right" title="0/8">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_ClientProfileServices.html">D2Store.Business.Services.ClientProfileServices</a></td><td class="right">0</td><td class="right">30</td><td class="right">30</td><td class="right">67</td><td title="0/30" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">2</td><td class="right" title="0/2">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_ClientService.html">D2Store.Business.Services.ClientService</a></td><td class="right">0</td><td class="right">19</td><td class="right">19</td><td class="right">51</td><td title="0/19" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_HeroService.html">D2Store.Business.Services.HeroService</a></td><td class="right">0</td><td class="right">32</td><td class="right">32</td><td class="right">76</td><td title="0/32" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">4</td><td class="right" title="0/4">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_ItemService.html">D2Store.Business.Services.ItemService</a></td><td class="right">0</td><td class="right">25</td><td class="right">25</td><td class="right">62</td><td title="0/25" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">2</td><td class="right" title="0/2">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_LotService.html">D2Store.Business.Services.LotService</a></td><td class="right">15</td><td class="right">12</td><td class="right">27</td><td class="right">66</td><td title="15/27" class="right">55.5%</td><td><table class="coverage"><tr><td class="green covered56">&nbsp;</td><td class="red covered44">&nbsp;</td></tr></table></td><td class="right">1</td><td class="right">2</td><td class="right" title="1/2">50%</td><td><table class="coverage"><tr><td class="green covered50">&nbsp;</td><td class="red covered50">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Business_RequestedItemService.html">D2Store.Business.Services.RequestedItemService</a></td><td class="right">0</td><td class="right">32</td><td class="right">32</td><td class="right">78</td><td title="0/32" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">2</td><td class="right" title="0/2">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><th>D2Store.Common</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th title="" class="right"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th><th class="right">0</th><th class="right">0</th><th class="right" title="-"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th></tr>
+<tr><td><a href="D2Store.Common_AuthorizationToken.html">D2Store.Common.DTO.Authentication.AuthorizationToken</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_LoginModel.html">D2Store.Common.DTO.Authentication.LoginModel</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_RegisterModel.html">D2Store.Common.DTO.Authentication.RegisterModel</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_BaseDTO.html">D2Store.Common.DTO.BaseDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_CartLotDTO.html">D2Store.Common.DTO.Cart.CartLotDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_ClientDTO.html">D2Store.Common.DTO.Client.ClientDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_AddClientResponse.html">D2Store.Common.DTO.Client.Response.AddClientResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_GetClientByIdResponse.html">D2Store.Common.DTO.Client.Response.GetClientByIdResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_UpdateClientResponse.html">D2Store.Common.DTO.Client.Response.UpdateClientResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_CreateClientProfileResponse.html">D2Store.Common.DTO.ClientProfile.ClientProfileResponse.CreateClientProfileResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_GetClientProfileResponse.html">D2Store.Common.DTO.ClientProfile.ClientProfileResponse.GetClientProfileResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_UpdateClientProfileResponse.html">D2Store.Common.DTO.ClientProfile.ClientProfileResponse.UpdateClientProfileResponse</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_ClientProfileDTO.html">D2Store.Common.DTO.ClientProfile.Service.ClientProfileDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_HeroDTO.html">D2Store.Common.DTO.Hero.HeroDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_ClientItemDTO.html">D2Store.Common.DTO.Item.ClientItemDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_ItemDTO.html">D2Store.Common.DTO.Item.ItemDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_RequestedItemDTO.html">D2Store.Common.DTO.Item.RequestedItemDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Common_LotDTO.html">D2Store.Common.DTO.Lot.LotDTO</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><th>D2Store.DAL</th><th class="right">0</th><th class="right">2072</th><th class="right">2072</th><th class="right">2587</th><th title="0/2072" class="right">0%</th><th><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></th><th class="right">0</th><th class="right">4</th><th class="right" title="0/4">0%</th><th><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></th></tr>
+<tr><td><a href="D2Store.DAL_AppInitializer.html">D2Store.DAL.AppInitializer.AppInitializer</a></td><td class="right">0</td><td class="right">43</td><td class="right">43</td><td class="right">79</td><td title="0/43" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">4</td><td class="right" title="0/4">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_DataContext.html">D2Store.DAL.DataContext</a></td><td class="right">0</td><td class="right">40</td><td class="right">40</td><td class="right">95</td><td title="0/40" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_EntityConfigurations.html">D2Store.DAL.EntityConfigurations</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_DataContextModelSnapshot.html">D2Store.DAL.Migrations.DataContextModelSnapshot</a></td><td class="right">0</td><td class="right">676</td><td class="right">676</td><td class="right">727</td><td title="0/676" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_InitialMigration.html">D2Store.DAL.Migrations.InitialMigration</a></td><td class="right">0</td><td class="right">1148</td><td class="right">1148</td><td class="right">1267</td><td title="0/1148" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_BaseRepository_1.html">D2Store.DAL.Repository.BaseRepository&lt;T&gt;</a></td><td class="right">0</td><td class="right">21</td><td class="right">21</td><td class="right">53</td><td title="0/21" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_CartLotRepository.html">D2Store.DAL.Repository.CartLotRepository</a></td><td class="right">0</td><td class="right">41</td><td class="right">41</td><td class="right">73</td><td title="0/41" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_ClientItemRepository.html">D2Store.DAL.Repository.ClientItemRepository</a></td><td class="right">0</td><td class="right">13</td><td class="right">13</td><td class="right">39</td><td title="0/13" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_ClientProfileRepository.html">D2Store.DAL.Repository.ClientProfileRepository</a></td><td class="right">0</td><td class="right">11</td><td class="right">11</td><td class="right">34</td><td title="0/11" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_ClientRepository.html">D2Store.DAL.Repository.ClientRepository</a></td><td class="right">0</td><td class="right">11</td><td class="right">11</td><td class="right">34</td><td title="0/11" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_HeroRepository.html">D2Store.DAL.Repository.HeroRepository</a></td><td class="right">0</td><td class="right">14</td><td class="right">14</td><td class="right">41</td><td title="0/14" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_ItemRepository.html">D2Store.DAL.Repository.ItemRepository</a></td><td class="right">0</td><td class="right">11</td><td class="right">11</td><td class="right">34</td><td title="0/11" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_LotRepository.html">D2Store.DAL.Repository.LotRepository</a></td><td class="right">0</td><td class="right">25</td><td class="right">25</td><td class="right">61</td><td title="0/25" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.DAL_RequestItemRepository.html">D2Store.DAL.Repository.RequestItemRepository</a></td><td class="right">0</td><td class="right">18</td><td class="right">18</td><td class="right">50</td><td title="0/18" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><th>D2Store.Domain</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th title="" class="right"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th><th class="right">0</th><th class="right">0</th><th class="right" title="-"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th></tr>
+<tr><td><a href="D2Store.Domain_BaseEntity.html">D2Store.Domain.Entities.BaseEntity</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_Client.html">D2Store.Domain.Entities.Client</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_ClientProfile.html">D2Store.Domain.Entities.ClientProfile</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_CompleteMigration.html">D2Store.Domain.Entities.CompleteMigration</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_Hero.html">D2Store.Domain.Entities.Hero</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_ApplicationRole.html">D2Store.Domain.Entities.Identity.ApplicationRole</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_ApplicationUser.html">D2Store.Domain.Entities.Identity.ApplicationUser</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_ClientItem.html">D2Store.Domain.Entities.Items.ClientItem</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_Item.html">D2Store.Domain.Entities.Items.Item</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_RequestedItem.html">D2Store.Domain.Entities.Items.RequestedItem</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_CartLot.html">D2Store.Domain.Entities.Lots.CartLot</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="D2Store.Domain_Lot.html">D2Store.Domain.Entities.Lots.Lot</a></td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td title="" class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td><td class="right">0</td><td class="right">0</td><td class="right" title="-"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
 <tr><th>Microsoft.TestPlatform.Extensions.EventLogCollector</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th title="" class="right"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th><th class="right">0</th><th class="right">0</th><th class="right" title="-"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th></tr>
+<tr><th>Moq</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th class="right">0</th><th title="" class="right"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th><th class="right">0</th><th class="right">0</th><th class="right" title="-"></th><th><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></th></tr>
 </tbody>
 </table>
 </div>
 </coverage-info>
-<div class="footer">Generated by: ReportGenerator 5.2.2.0<br />07.03.2024 - 19:28:08<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div></div>
+<div class="footer">Generated by: ReportGenerator 5.2.2.0<br />13.03.2024 - 18:02:11<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div></div>
 <script type="text/javascript">
 /* <![CDATA[ */
 (function() {

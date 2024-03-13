@@ -135,7 +135,6 @@ namespace D2Store.Business.Services
         {
             var client = new Client ()
             {
-                Nickname = nickname,
                 UserId = userId
             };
 

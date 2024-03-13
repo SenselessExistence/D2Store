@@ -219,19 +219,263 @@ for (i = 0, l = charts.length; i < l; i++) {
 
 var assemblies = [
   {
+    "name": "D2Store.Business",
+    "classes": [
+      { "name": "D2Store.Business.Services.AuthorizationService", "rp": "D2Store.Business_AuthorizationService.html", "cl": 0, "ucl": 87, "cal": 87, "tl": 153, "cb": 0, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.CartLotService", "rp": "D2Store.Business_CartLotService.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 48, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.ClientItemService", "rp": "D2Store.Business_ClientItemService.html", "cl": 0, "ucl": 41, "cal": 41, "tl": 91, "cb": 0, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.ClientProfileServices", "rp": "D2Store.Business_ClientProfileServices.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 67, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.ClientService", "rp": "D2Store.Business_ClientService.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 51, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.HeroService", "rp": "D2Store.Business_HeroService.html", "cl": 0, "ucl": 32, "cal": 32, "tl": 76, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.ItemService", "rp": "D2Store.Business_ItemService.html", "cl": 0, "ucl": 25, "cal": 25, "tl": 62, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.LotService", "rp": "D2Store.Business_LotService.html", "cl": 15, "ucl": 12, "cal": 27, "tl": 66, "cb": 1, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.RequestedItemService", "rp": "D2Store.Business_RequestedItemService.html", "cl": 0, "ucl": 32, "cal": 32, "tl": 78, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+    ]},
+  {
+    "name": "D2Store.Common",
+    "classes": [
+      { "name": "D2Store.Common.DTO.Authentication.AuthorizationToken", "rp": "D2Store.Common_AuthorizationToken.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Authentication.LoginModel", "rp": "D2Store.Common_LoginModel.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Authentication.RegisterModel", "rp": "D2Store.Common_RegisterModel.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.BaseDTO", "rp": "D2Store.Common_BaseDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Cart.CartLotDTO", "rp": "D2Store.Common_CartLotDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Client.ClientDTO", "rp": "D2Store.Common_ClientDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Client.Response.AddClientResponse", "rp": "D2Store.Common_AddClientResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Client.Response.GetClientByIdResponse", "rp": "D2Store.Common_GetClientByIdResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Client.Response.UpdateClientResponse", "rp": "D2Store.Common_UpdateClientResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.ClientProfile.ClientProfileResponse.CreateClientProfileResponse", "rp": "D2Store.Common_CreateClientProfileResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.ClientProfile.ClientProfileResponse.GetClientProfileResponse", "rp": "D2Store.Common_GetClientProfileResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.ClientProfile.ClientProfileResponse.UpdateClientProfileResponse", "rp": "D2Store.Common_UpdateClientProfileResponse.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.ClientProfile.Service.ClientProfileDTO", "rp": "D2Store.Common_ClientProfileDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Hero.HeroDTO", "rp": "D2Store.Common_HeroDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Item.ClientItemDTO", "rp": "D2Store.Common_ClientItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Item.ItemDTO", "rp": "D2Store.Common_ItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Item.RequestedItemDTO", "rp": "D2Store.Common_RequestedItemDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Common.DTO.Lot.LotDTO", "rp": "D2Store.Common_LotDTO.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+    ]},
+  {
+    "name": "D2Store.DAL",
+    "classes": [
+      { "name": "D2Store.DAL.AppInitializer.AppInitializer", "rp": "D2Store.DAL_AppInitializer.html", "cl": 0, "ucl": 43, "cal": 43, "tl": 79, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.DataContext", "rp": "D2Store.DAL_DataContext.html", "cl": 0, "ucl": 40, "cal": 40, "tl": 95, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.EntityConfigurations", "rp": "D2Store.DAL_EntityConfigurations.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Migrations.DataContextModelSnapshot", "rp": "D2Store.DAL_DataContextModelSnapshot.html", "cl": 0, "ucl": 676, "cal": 676, "tl": 727, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Migrations.InitialMigration", "rp": "D2Store.DAL_InitialMigration.html", "cl": 0, "ucl": 1148, "cal": 1148, "tl": 1267, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.BaseRepository<T>", "rp": "D2Store.DAL_BaseRepository_1.html", "cl": 0, "ucl": 21, "cal": 21, "tl": 53, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.CartLotRepository", "rp": "D2Store.DAL_CartLotRepository.html", "cl": 0, "ucl": 41, "cal": 41, "tl": 73, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ClientItemRepository", "rp": "D2Store.DAL_ClientItemRepository.html", "cl": 0, "ucl": 13, "cal": 13, "tl": 39, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ClientProfileRepository", "rp": "D2Store.DAL_ClientProfileRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ClientRepository", "rp": "D2Store.DAL_ClientRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.HeroRepository", "rp": "D2Store.DAL_HeroRepository.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.ItemRepository", "rp": "D2Store.DAL_ItemRepository.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.LotRepository", "rp": "D2Store.DAL_LotRepository.html", "cl": 0, "ucl": 25, "cal": 25, "tl": 61, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.DAL.Repository.RequestItemRepository", "rp": "D2Store.DAL_RequestItemRepository.html", "cl": 0, "ucl": 18, "cal": 18, "tl": 50, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+    ]},
+  {
+    "name": "D2Store.Domain",
+    "classes": [
+      { "name": "D2Store.Domain.Entities.BaseEntity", "rp": "D2Store.Domain_BaseEntity.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Client", "rp": "D2Store.Domain_Client.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.ClientProfile", "rp": "D2Store.Domain_ClientProfile.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.CompleteMigration", "rp": "D2Store.Domain_CompleteMigration.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Hero", "rp": "D2Store.Domain_Hero.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Identity.ApplicationRole", "rp": "D2Store.Domain_ApplicationRole.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Identity.ApplicationUser", "rp": "D2Store.Domain_ApplicationUser.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Items.ClientItem", "rp": "D2Store.Domain_ClientItem.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Items.Item", "rp": "D2Store.Domain_Item.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Items.RequestedItem", "rp": "D2Store.Domain_RequestedItem.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Lots.CartLot", "rp": "D2Store.Domain_CartLot.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Domain.Entities.Lots.Lot", "rp": "D2Store.Domain_Lot.html", "cl": 0, "ucl": 0, "cal": 0, "tl": 0, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+    ]},
+  {
     "name": "Microsoft.TestPlatform.Extensions.EventLogCollector",
+    "classes": [
+    ]},
+  {
+    "name": "Moq",
     "classes": [
     ]},
 ];
 
-var metrics = [];
+var metrics = [{ "name": "Cyclomatic complexity", "abbreviation": "cc", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" }, { "name": "NPath complexity", "abbreviation": "npth", "explanationUrl": "https://modess.io/npath-complexity-cyclomatic-complexity-explained" }, { "name": "Sequence coverage", "abbreviation": "seq", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Branch coverage", "abbreviation": "bcov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Crap Score", "abbreviation": "crp", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" }];
 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
+      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
+      { "name": "NPath complexity", "explanationUrl": "https://modess.io/npath-complexity-cyclomatic-complexity-explained" },
+      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
 ];
 
 var riskHotspots = [
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Migrations.InitialMigration", "reportPath": "D2Store.DAL_InitialMigration.html", "methodName": "System.Void D2Store.DAL.Migrations.InitialMigration::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)", "methodShortName": "Up(...)", "fileIndex": 0, "line": 13,
+    "metrics": [
+      { "value": 33, "exceeded": true },
+      { "value": 0, "exceeded": false },
+      { "value": 1122, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Migrations.DataContextModelSnapshot", "reportPath": "D2Store.DAL_DataContextModelSnapshot.html", "methodName": "System.Void D2Store.DAL.Migrations.DataContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)", "methodShortName": "BuildModel(...)", "fileIndex": 0, "line": 17,
+    "metrics": [
+      { "value": 31, "exceeded": true },
+      { "value": 0, "exceeded": false },
+      { "value": 992, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Migrations.InitialMigration", "reportPath": "D2Store.DAL_InitialMigration.html", "methodName": "System.Void D2Store.DAL.Migrations.InitialMigration::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)", "methodShortName": "BuildTargetModel(...)", "fileIndex": 1, "line": 20,
+    "metrics": [
+      { "value": 31, "exceeded": true },
+      { "value": 0, "exceeded": false },
+      { "value": 992, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "Register()", "methodShortName": "Register()", "fileIndex": 0, "line": 39,
+    "metrics": [
+      { "value": 20, "exceeded": false },
+      { "value": 8, "exceeded": false },
+      { "value": 420, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "Login()", "methodShortName": "Login()", "fileIndex": 0, "line": 83,
+    "metrics": [
+      { "value": 13, "exceeded": false },
+      { "value": 4, "exceeded": false },
+      { "value": 182, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.AppInitializer.AppInitializer", "reportPath": "D2Store.DAL_AppInitializer.html", "methodName": "InitializeDefaultData()", "methodShortName": "InitializeDefaultData()", "fileIndex": 0, "line": 24,
+    "metrics": [
+      { "value": 12, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 156, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.DataContext", "reportPath": "D2Store.DAL_DataContext.html", "methodName": "Initialize()", "methodShortName": "Initialize()", "fileIndex": 0, "line": 73,
+    "metrics": [
+      { "value": 7, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 56, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.CartLotRepository", "reportPath": "D2Store.DAL_CartLotRepository.html", "methodName": "RemoveAllLotsFromCartAsync()", "methodShortName": "RemoveAllLotsFromCartAsync()", "fileIndex": 0, "line": 33,
+    "metrics": [
+      { "value": 7, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 56, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ClientItemService", "reportPath": "D2Store.Business_ClientItemService.html", "methodName": "GetAllClientItemsByClientIdAsync()", "methodShortName": "GetAllClientItemsByClientIdAsync()", "fileIndex": 0, "line": 71,
+    "metrics": [
+      { "value": 6, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 42, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ClientProfileServices", "reportPath": "D2Store.Business_ClientProfileServices.html", "methodName": "UpdateClientProfileAsync()", "methodShortName": "UpdateClientProfileAsync()", "fileIndex": 0, "line": 31,
+    "metrics": [
+      { "value": 6, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 42, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.AppInitializer.AppInitializer", "reportPath": "D2Store.DAL_AppInitializer.html", "methodName": "CreateDefaultAdminAsync()", "methodShortName": "CreateDefaultAdminAsync()", "fileIndex": 0, "line": 62,
+    "metrics": [
+      { "value": 6, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 42, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.AppInitializer.AppInitializer", "reportPath": "D2Store.DAL_AppInitializer.html", "methodName": "CreateRolesAsync()", "methodShortName": "CreateRolesAsync()", "fileIndex": 0, "line": 43,
+    "metrics": [
+      { "value": 6, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 42, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "InitializeClientData()", "methodShortName": "InitializeClientData()", "fileIndex": 0, "line": 135,
+    "metrics": [
+      { "value": 5, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.RequestedItemService", "reportPath": "D2Store.Business_RequestedItemService.html", "methodName": "RemoveRequestedItemsByClientIdAsync()", "methodShortName": "RemoveRequestedItemsByClientIdAsync()", "fileIndex": 0, "line": 72,
+    "metrics": [
+      { "value": 5, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.BaseRepository<T>", "reportPath": "D2Store.DAL_BaseRepository_1.html", "methodName": "AddAsync()", "methodShortName": "AddAsync()", "fileIndex": 0, "line": 18,
+    "metrics": [
+      { "value": 5, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.BaseRepository<T>", "reportPath": "D2Store.DAL_BaseRepository_1.html", "methodName": "RemoveByIdAsync()", "methodShortName": "RemoveByIdAsync()", "fileIndex": 0, "line": 44,
+    "metrics": [
+      { "value": 5, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.DAL", "class": "D2Store.DAL.Repository.CartLotRepository", "reportPath": "D2Store.DAL_CartLotRepository.html", "methodName": "RemoveLotFromCartAsync()", "methodShortName": "RemoveLotFromCartAsync()", "fileIndex": 0, "line": 23,
+    "metrics": [
+      { "value": 5, "exceeded": false },
+      { "value": 0, "exceeded": false },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ClientItemService", "reportPath": "D2Store.Business_ClientItemService.html", "methodName": "AddClientItemAsync()", "methodShortName": "AddClientItemAsync()", "fileIndex": 0, "line": 25,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ClientItemService", "reportPath": "D2Store.Business_ClientItemService.html", "methodName": "GetClientItemByIdAsync()", "methodShortName": "GetClientItemByIdAsync()", "fileIndex": 0, "line": 57,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ClientItemService", "reportPath": "D2Store.Business_ClientItemService.html", "methodName": "UpdateClientItemAsync()", "methodShortName": "UpdateClientItemAsync()", "fileIndex": 0, "line": 41,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.HeroService", "reportPath": "D2Store.Business_HeroService.html", "methodName": "GetHeroByIdAsync()", "methodShortName": "GetHeroByIdAsync()", "fileIndex": 0, "line": 44,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.HeroService", "reportPath": "D2Store.Business_HeroService.html", "methodName": "GetHeroesByNameAsync()", "methodShortName": "GetHeroesByNameAsync()", "fileIndex": 0, "line": 58,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.ItemService", "reportPath": "D2Store.Business_ItemService.html", "methodName": "GetItemByIdAsync()", "methodShortName": "GetItemByIdAsync()", "fileIndex": 0, "line": 44,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.RequestedItemService", "reportPath": "D2Store.Business_RequestedItemService.html", "methodName": "GetRequestedItemByIdAsync()", "methodShortName": "GetRequestedItemByIdAsync()", "fileIndex": 0, "line": 44,
+    "metrics": [
+      { "value": 4, "exceeded": false },
+      { "value": 2, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
 ];
 
 var branchCoverageAvailable = true;

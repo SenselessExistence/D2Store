@@ -60,7 +60,6 @@ namespace D2Store.Business.Services
             clientProfile.FirstName = profileDTO.FirstName;
             clientProfile.LastName = profileDTO.LastName;
             clientProfile.PhoneNumber = profileDTO.PhoneNumber;
-            clientProfile.Birthday = profileDTO.Birthday;
             clientProfile.About = profileDTO.About;
             clientProfile.Nickname = profileDTO.Nickname;
         }
