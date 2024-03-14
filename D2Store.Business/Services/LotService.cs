@@ -38,6 +38,11 @@ namespace D2Store.Business.Services
         {
             var lots = await _lotRepository.GetLotsByClientIdAsync(clientId);
 
+            if(lots.Count == 0)
+            {
+                throw new Exception("Client dont have lots");
+            }
+
             return _mapper.Map<List<LotDTO>>(lots);
         }
 
@@ -55,12 +60,26 @@ namespace D2Store.Business.Services
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)
         {
-            return await _lotRepository.RemoveLotByIdAsync(lotId);
+             var result = await _lotRepository.RemoveLotByIdAsync(lotId);
+
+            if(result == false)
+            {
+                throw new Exception("Failed to remove");
+            }
+
+            return result;
         }
 
-        public async Task<bool> RemoveAllLotsByClientId(int clientId)
+        public async Task<bool> RemoveAllLotsByClientIdAsync(int clientId)
         {
-            return await _lotRepository.RemoveAllLotsByClientIdAsync(clientId);
+            var result = await _lotRepository.RemoveAllLotsByClientIdAsync(clientId);
+
+            if(result == false)
+            {
+                throw new Exception("Failed to remove");
+            }
+
+            return result;
         }
     }
 }

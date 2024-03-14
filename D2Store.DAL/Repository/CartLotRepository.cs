@@ -14,9 +14,11 @@ namespace D2Store.DAL.Repository
             
         }
 
-        public async Task<CartLot> AddLotToCartAsync(CartLot lot)
+        public async Task<bool> AddLotToCartAsync(CartLot lot)
         {
-            return await AddAsync(lot);
+            await AddAsync(lot);
+
+            return true;
         }
 
         public async Task<bool> RemoveLotFromCartAsync(int lotId)

@@ -15,6 +15,6 @@ namespace D2Store.Business.Services.Interfaces
 
         Task<bool> RemoveLotByIdAsync(int lotId);
 
-        Task<bool> RemoveAllLotsByClientId(int clientId);
+        Task<bool> RemoveAllLotsByClientIdAsync(int clientId);
     }
 }

@@ -9,6 +9,7 @@ namespace D2Store.AutoMapperProfiles
         public CartLotMapperProfile()
         {
             CreateMap<CartLot, CartLotDTO>();
+            CreateMap<CartLotDTO, CartLot>();
         }
     }
 }

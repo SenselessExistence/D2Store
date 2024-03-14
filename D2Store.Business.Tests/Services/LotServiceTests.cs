@@ -59,6 +59,42 @@ namespace D2Store.Business.Tests.Services
         }
         #endregion
 
+        #region UpdateLotAsync
+        [Fact]
+        public async Task UpdateLotAsync_Success()
+        {
+            //Arrange
+            var lotDTO = new LotDTO
+            {
+                Id = 1,
+                ClientItemId = 2,
+                Price = 250,
+                SellerClientId = 2
+            };
+
+            var lot = new Lot
+            {
+                Id = lotDTO.Id,
+                ClientItemId = lotDTO.ClientItemId,
+                Price = lotDTO.Price,
+                SellerClientId = lotDTO.SellerClientId,
+                IsActive = true,
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow
+            };
+
+            _mapper.Setup(x => x.Map<Lot>(lotDTO)).Returns(lot);
+            _lotRepository.Setup(x => x.UpdateLotAsync(lot)).Returns(Task.FromResult(true));
+
+            //Act
+            var result = await _lotService.UpdateLotAsync(lotDTO);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        #endregion
+
         #region GetLotByIAsync
         [Fact]
         public async Task GetLotByIdAsync_Success()
@@ -110,6 +146,157 @@ namespace D2Store.Business.Tests.Services
             var exception = await Assert.ThrowsAsync<Exception>(async () => await _lotService.GetLotByIdAsync(id));
 
             Assert.Equal(exceptionMsg, exception.Message);
+        }
+        #endregion
+
+        #region GetLotsByClientIdAsync
+        [Fact]
+        public async Task GetLotsByClientIdAsync_Success()
+        {
+            //Arrange
+            int clientId = 1;
+
+            List<Lot> lots = new List<Lot>()
+            {
+                new Lot
+                {
+                    Id = 1,
+                    ClientItemId = 1,
+                    Price = 200,
+                    SellerClientId = clientId,
+                    IsActive = true,
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow
+                },
+                new Lot
+                {
+                    Id = 2,
+                    ClientItemId = 2,
+                    Price = 400,
+                    SellerClientId = clientId,
+                    IsActive = true,
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow
+                }
+            };
+
+            List<LotDTO> lotsDTO = new List<LotDTO>
+            {
+                new LotDTO
+                {
+                    Id = lots[0].Id,
+                    ClientItemId = lots[0].ClientItemId,
+                    Price = lots[0].Price,
+                    SellerClientId = lots[0].SellerClientId
+                },
+                new LotDTO
+                {
+                    Id = lots[1].Id,
+                    ClientItemId = lots[1].ClientItemId,
+                    Price = lots[1].Price,
+                    SellerClientId = lots[1].SellerClientId
+                }
+            };
+
+            _mapper.Setup(x => x.Map<List<LotDTO>>(lots)).Returns(lotsDTO);
+            _lotRepository.Setup(x => x.GetLotsByClientIdAsync(clientId)).Returns(Task.FromResult(lots));
+
+            //Act
+            var result = await _lotService.GetLotsByClientIdAsync(clientId);
+
+            //Assert
+            Assert.NotEmpty(result);
+            Assert.Equal(lots.Count(), result.Count());
+            Assert.Equal(lotsDTO[0].Id, result[0].Id);
+            Assert.Equal(lotsDTO[0].ClientItemId, result[0].ClientItemId);
+            Assert.Equal(lotsDTO[0].Price, result[0].Price);
+            Assert.Equal(lotsDTO[0].SellerClientId, result[0].SellerClientId);
+            Assert.Equal(lotsDTO[1].Id, result[1].Id);
+            Assert.Equal(lotsDTO[1].ClientItemId, result[1].ClientItemId);
+            Assert.Equal(lotsDTO[1].Price, result[1].Price);
+            Assert.Equal(lotsDTO[1].SellerClientId, result[1].SellerClientId);
+        }
+
+        [Fact]
+        public async Task GetLotsByClientIdAsync_ClientDontHaveLots()
+        {
+            //Arrange
+            int clientId = 1;
+            string exceptionMsg = "Client dont have lots";
+
+            List<Lot> emptyLots = new List<Lot>();
+
+            _lotRepository.Setup(x => x.GetLotsByClientIdAsync(clientId)).Returns(Task.FromResult(emptyLots));
+
+            //Assert
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _lotService.GetLotsByClientIdAsync(clientId));
+
+            Assert.Equal(exceptionMsg, result.Message);
+        }
+
+        #endregion
+
+        #region RemoveLotByIdAsync
+        [Fact]
+        public async Task RemoveLotByIdAsync_Success()
+        {
+            //Arrange
+            int lotId = 1;
+
+            _lotRepository.Setup(x => x.RemoveLotByIdAsync(lotId)).Returns(Task.FromResult(true));
+
+            //Act
+            bool result = await _lotService.RemoveLotByIdAsync(lotId);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task RemoveLotByIdAsync_Failed()
+        {
+            //Arrange
+            int lotId = 1;
+            string exceptionMsg = "Faild to remove";
+
+            _lotRepository.Setup(x => x.RemoveLotByIdAsync(lotId)).Returns(Task.FromResult(false));
+
+            //Assert
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _lotService.RemoveLotByIdAsync(lotId));
+
+            Assert.Equal(exceptionMsg, result.Message);
+        }
+        #endregion
+
+        #region RemoveAllLotsByClientIdAsync
+        [Fact]
+        public async Task RemoveAllLotsByClientIdAsync_Success()
+        {
+            //Arrange
+            int clientId = 1;
+
+            _lotRepository.Setup(x => x.RemoveAllLotsByClientIdAsync(clientId)).Returns(Task.FromResult(true));
+
+            //Act
+            var result = await _lotService.RemoveAllLotsByClientIdAsync(clientId);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task RemoveAllLotsByClientIdAsync_Failed()
+        {
+            //Arrange
+            int clientId = 1;
+            string exceptionMsg = "Failed to remove";
+
+            _lotRepository.Setup(x => x.RemoveAllLotsByClientIdAsync(clientId)).Returns(Task.FromResult(false));
+
+            //Assert
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _lotService.RemoveAllLotsByClientIdAsync(clientId));
+
+            Assert.Equal(exceptionMsg, result.Message);
         }
         #endregion
     }

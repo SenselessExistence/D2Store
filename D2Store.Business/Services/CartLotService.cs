@@ -10,29 +10,28 @@ namespace D2Store.Business.Services
     public class CartLotService : ICartLotService
     {
         private readonly ICartLotRepository _cartLotRepository;
+        private readonly IMapper _mapper;
 
-        public CartLotService(ICartLotRepository cartLotRepository)
+        public CartLotService(ICartLotRepository cartLotRepository, IMapper mapper)
         {
             _cartLotRepository = cartLotRepository;
+            _mapper = mapper;
         }
 
         public async Task<bool> AddLotToCartAsync(CartLotDTO cartLotDTO)
         {
-            var lotToAdd = new CartLot()
-            {
-                ExpectedPrice = cartLotDTO.Price,
-                ClientId = cartLotDTO.ClientId,
-                LotId = cartLotDTO.LotId,
-            };
+            var cartLotToAdd = _mapper.Map<CartLot>(cartLotDTO);
 
-            await _cartLotRepository.AddLotToCartAsync(lotToAdd);
-
-            return true;
+            return await _cartLotRepository.AddLotToCartAsync(cartLotToAdd);
         }
 
         public async Task<List<CartLotDTO>> GetAllCartLotsByClientIdAsync(int clientId)
         {
-            return await _cartLotRepository.GetAllCartLotsByClientIdAsync(clientId);
+            var cartLots = await _cartLotRepository.GetAllCartLotsByClientIdAsync(clientId);
+
+            var result = _mapper.Map<List<CartLotDTO>>(cartLots);
+
+            return result;
         }
 
         public async Task<bool> RemoveLotFromCartByIdAsync(int lotId)

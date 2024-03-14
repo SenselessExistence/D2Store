@@ -64,7 +64,7 @@ namespace D2Store.Controllers
         [Route("client/{clientId}")]
         public async Task<IActionResult> RemoveAllLotsByClientId(int clientId)
         {
-            await _lotService.RemoveAllLotsByClientId(clientId);
+            await _lotService.RemoveAllLotsByClientIdAsync(clientId);
 
             return Ok();
         }
