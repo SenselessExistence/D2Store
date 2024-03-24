@@ -221,7 +221,7 @@ var assemblies = [
   {
     "name": "D2Store.Business",
     "classes": [
-      { "name": "D2Store.Business.Services.AuthorizationService", "rp": "D2Store.Business_AuthorizationService.html", "cl": 0, "ucl": 87, "cal": 87, "tl": 153, "cb": 0, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "D2Store.Business.Services.AuthorizationService", "rp": "D2Store.Business_AuthorizationService.html", "cl": 90, "ucl": 0, "cal": 90, "tl": 152, "cb": 10, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Business.Services.CartLotService", "rp": "D2Store.Business_CartLotService.html", "cl": 0, "ucl": 16, "cal": 16, "tl": 47, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Business.Services.ClientItemService", "rp": "D2Store.Business_ClientItemService.html", "cl": 46, "ucl": 0, "cal": 46, "tl": 91, "cb": 8, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "D2Store.Business.Services.ClientProfileServices", "rp": "D2Store.Business_ClientProfileServices.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 67, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -330,20 +330,6 @@ var riskHotspots = [
       { "value": 992, "exceeded": true },
     ]},
   {
-    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "Register()", "methodShortName": "Register()", "fileIndex": 0, "line": 39,
-    "metrics": [
-      { "value": 20, "exceeded": false },
-      { "value": 8, "exceeded": false },
-      { "value": 420, "exceeded": true },
-    ]},
-  {
-    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "Login()", "methodShortName": "Login()", "fileIndex": 0, "line": 83,
-    "metrics": [
-      { "value": 13, "exceeded": false },
-      { "value": 4, "exceeded": false },
-      { "value": 182, "exceeded": true },
-    ]},
-  {
     "assembly": "D2Store.DAL", "class": "D2Store.DAL.AppInitializer.AppInitializer", "reportPath": "D2Store.DAL_AppInitializer.html", "methodName": "InitializeDefaultData()", "methodShortName": "InitializeDefaultData()", "fileIndex": 0, "line": 24,
     "metrics": [
       { "value": 12, "exceeded": false },
@@ -384,13 +370,6 @@ var riskHotspots = [
       { "value": 6, "exceeded": false },
       { "value": 0, "exceeded": false },
       { "value": 42, "exceeded": true },
-    ]},
-  {
-    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "InitializeClientData()", "methodShortName": "InitializeClientData()", "fileIndex": 0, "line": 135,
-    "metrics": [
-      { "value": 5, "exceeded": false },
-      { "value": 0, "exceeded": false },
-      { "value": 30, "exceeded": true },
     ]},
   {
     "assembly": "D2Store.Business", "class": "D2Store.Business.Services.RequestedItemService", "reportPath": "D2Store.Business_RequestedItemService.html", "methodName": "RemoveRequestedItemsByClientIdAsync()", "methodShortName": "RemoveRequestedItemsByClientIdAsync()", "fileIndex": 0, "line": 72,
@@ -440,6 +419,13 @@ var riskHotspots = [
       { "value": 4, "exceeded": false },
       { "value": 2, "exceeded": false },
       { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "D2Store.Business", "class": "D2Store.Business.Services.AuthorizationService", "reportPath": "D2Store.Business_AuthorizationService.html", "methodName": "Register()", "methodShortName": "Register()", "fileIndex": 0, "line": 39,
+    "metrics": [
+      { "value": 17, "exceeded": false },
+      { "value": 8, "exceeded": false },
+      { "value": 17, "exceeded": true },
     ]},
 ];
 

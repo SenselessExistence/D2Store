@@ -55,10 +55,7 @@ namespace D2Store.Business.Services
 
             if (!result.Succeeded)
             {
-                foreach (var errors in result.Errors)
-                {
-                    throw new Exception($"Failed to register. {errors.Description}");
-                }
+                    throw new Exception($"Failed to register.");
             }
 
             if (await _roleManager.RoleExistsAsync(DefaultRole))
@@ -109,11 +106,13 @@ namespace D2Store.Business.Services
                 return new AuthorizationToken
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    ExpirationDate = token.ValidTo.Subtract(DateTime.MinValue).TotalSeconds
+                    ExpirationDate = token.ValidTo.Subtract(DateTime.MinValue).TotalDays
                 };
             }
-
-            return null;
+            else
+            {
+                throw new Exception("Invalid password!");
+            }
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
