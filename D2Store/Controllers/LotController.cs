@@ -51,6 +51,15 @@ namespace D2Store.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Route("filters")]
+        public async Task<IActionResult> GetFilteredLots(LotFiltersRequestDTO lotFilters)
+        {
+            var result = await _lotService.GetFilteredLots(lotFilters);
+
+            return Ok(result);
+        }
+
         [HttpDelete]
         [Route("{lotId}")]
         public async Task<IActionResult> RemoveLotById(int lotId)

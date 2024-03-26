@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240313143921_InitialMigration")]
+    [Migration("20240326170552_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -67,7 +67,6 @@ namespace D2Store.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("About")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -88,7 +87,6 @@ namespace D2Store.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nickname")
@@ -97,7 +95,6 @@ namespace D2Store.DAL.Migrations
                         .HasColumnType("nvarchar(18)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")

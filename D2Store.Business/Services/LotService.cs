@@ -58,6 +58,15 @@ namespace D2Store.Business.Services
             return _mapper.Map<LotDTO>(lot);
         }
 
+        public async Task<List<LotDTO>> GetFilteredLots(LotFiltersRequestDTO lotFilters)
+        {
+            var filteredLots = await _lotRepository.GetFilteredLots(lotFilters);
+
+            var result = _mapper.Map<List<LotDTO>>(filteredLots);
+
+            return result;
+        }
+
         public async Task<bool> RemoveLotByIdAsync(int lotId)
         {
              var result = await _lotRepository.RemoveLotByIdAsync(lotId);
