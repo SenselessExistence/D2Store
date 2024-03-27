@@ -53,11 +53,20 @@ namespace D2Store.Controllers
 
         [HttpPost]
         [Route("filters")]
-        public async Task<IActionResult> GetFilteredLots(LotFiltersRequestDTO lotFilters)
+        public async Task<IActionResult> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters)
         {
-            var result = await _lotService.GetFilteredLots(lotFilters);
+            var result = await _lotService.GetFilteredLotsAsync(lotFilters);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("buy")]
+        public async Task<IActionResult> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
+        {
+            await _lotService.BuyLotAsync(buyLotRequestDTO);
+            
+            return Ok();
         }
 
         [HttpDelete]

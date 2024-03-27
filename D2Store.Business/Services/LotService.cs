@@ -11,13 +11,19 @@ namespace D2Store.Business.Services
     public class LotService : ILotService
     {
         private readonly ILotRepository _lotRepository;
+        private readonly IClientRepository _clientRepository;
+        private readonly IClientItemRepository _itemRepository;
         private readonly IMapper _mapper;
 
         public LotService(ILotRepository lotRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IClientRepository clientRepository,
+            IClientItemRepository clientItemRepository)
         {
             _lotRepository = lotRepository;
             _mapper = mapper;
+            _clientRepository = clientRepository;
+            _itemRepository = clientItemRepository;
         }
 
         public async Task<bool> AddLotAsync(LotDTO lot)
@@ -58,13 +64,44 @@ namespace D2Store.Business.Services
             return _mapper.Map<LotDTO>(lot);
         }
 
-        public async Task<List<LotDTO>> GetFilteredLots(LotFiltersRequestDTO lotFilters)
+        public async Task<List<LotDTO>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters)
         {
-            var filteredLots = await _lotRepository.GetFilteredLots(lotFilters);
+            var filteredLots = await _lotRepository.GetFilteredLotsAsync(lotFilters);
 
             var result = _mapper.Map<List<LotDTO>>(filteredLots);
 
             return result;
+        }
+
+        public async Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
+        {
+            var user = await _clientRepository.GetClientByIdAsync(buyLotRequestDTO.BuyerId);
+
+            var lot = await _lotRepository.GetLotByIdAsync(buyLotRequestDTO.LotId);
+
+            var item = await _itemRepository.GetClientItemByIdAsync(lot.ClientItemId);
+
+            if (!lot.IsActive)
+            {
+                throw new Exception("Lot is not active.");
+            }
+
+            if(user.Balance < lot.Price)
+            {
+                throw new Exception("Insufficient funds on account.");
+            }
+
+            user.Balance -= lot.Price;
+            await _clientRepository.UpdateClientAsync(user);
+
+            item.ClientId = buyLotRequestDTO.BuyerId;
+            await _itemRepository.UpdateClientItemAsync(item);
+
+            lot.SellDate = DateTime.Now;
+            lot.IsActive = false;
+            await _lotRepository.UpdateLotAsync(lot);
+
+            return true;
         }
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)

@@ -13,7 +13,7 @@ namespace D2Store.DAL.Repository.Interfaces
 
         Task<List<Lot>> GetLotsByClientIdAsync(int clientId);
 
-        Task<List<Lot>> GetFilteredLots(LotFiltersRequestDTO lotFilters);
+        Task<List<Lot>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters);
 
         Task<bool> RemoveLotByIdAsync(int lotId);
 

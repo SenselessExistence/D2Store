@@ -13,7 +13,9 @@ namespace D2Store.Business.Services.Interfaces
 
         Task<LotDTO> GetLotByIdAsync(int lotId);
 
-        Task<List<LotDTO>> GetFilteredLots(LotFiltersRequestDTO lotFilters);
+        Task<List<LotDTO>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters);
+
+        Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO);
 
         Task<bool> RemoveLotByIdAsync(int lotId);
 

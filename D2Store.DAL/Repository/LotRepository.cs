@@ -37,7 +37,7 @@ namespace D2Store.DAL.Repository
             return clientLots;
         }
 
-        public async Task<List<Lot>> GetFilteredLots(LotFiltersRequestDTO lotFilters)
+        public async Task<List<Lot>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters)
         {
             var query = _context.Lots.AsQueryable();
 
