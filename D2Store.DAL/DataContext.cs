@@ -34,8 +34,6 @@ namespace D2Store.DAL
 
         public virtual DbSet<Hero> Heroes { get; set; }
 
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

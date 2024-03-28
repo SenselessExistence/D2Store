@@ -19,6 +19,8 @@ namespace D2Store.Domain.Entities
 
         public List<ClientItem> ClientItems { get; set; }
 
+        public List<RequestedItem> RequestedItems { get; set; }
+
         public List<Lot> Lots { get; set; }
 
         public List<CartLot> CartLots { get; set; }
