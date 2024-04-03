@@ -19,6 +19,7 @@ namespace D2Store.Business.Services
         private readonly IClientRepository _clientRepository;
         private readonly IClientProfileRepository _clientProfileRepository;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
         private readonly string DefaultRole = "User";
 
@@ -26,13 +27,15 @@ namespace D2Store.Business.Services
             RoleManager<ApplicationRole> roleManager,
             IClientRepository clientRepository,
             IClientProfileRepository clientProfileRepository,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IEmailService emailService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _clientRepository = clientRepository;
             _clientProfileRepository = clientProfileRepository;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         public async Task<bool> Register(RegisterModel registerClient)
@@ -71,6 +74,8 @@ namespace D2Store.Business.Services
             var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
 
             await InitializeClientData(registerClient.Nickname, createdUser.Id);
+
+            await _emailService.SendEmailAsync(user.Email, registerClient.Nickname);
 
             return true;
 

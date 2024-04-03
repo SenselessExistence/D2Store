@@ -1,4 +1,5 @@
 ﻿using D2Store.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace D2Store.DAL.EntityConfigurations
@@ -23,9 +24,6 @@ namespace D2Store.DAL.EntityConfigurations
                 .HasMaxLength(20)
                 .IsRequired(false);
 
-            builder.Property(c => c.Birthday)
-                .IsRequired(false);
-
             builder.Property(c => c.PhoneNumber)
                 .HasMaxLength(10)
                 .IsRequired(false);
@@ -34,9 +32,10 @@ namespace D2Store.DAL.EntityConfigurations
                 .HasMaxLength(20)
                 .IsRequired();
 
-            builder.HasOne(c => c.Client)
-                .WithOne()
-                .HasForeignKey<ClientProfile>(c => c.ClientId);
+            builder.HasOne(cp => cp.Client)
+                   .WithOne(c => c.ClientProfile)
+                   .HasForeignKey<ClientProfile>(cp => cp.ClientId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

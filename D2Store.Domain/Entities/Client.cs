@@ -8,7 +8,6 @@ namespace D2Store.Domain.Entities
 {
     public class Client : BaseEntity
     {
-        [ForeignKey(nameof(ApplicationUser))]
         public int UserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
@@ -20,6 +19,8 @@ namespace D2Store.Domain.Entities
         public List<ClientItem> ClientItems { get; set; }
 
         public List<RequestedItem> RequestedItems { get; set; }
+
+        public List<Client> Friends { get; set; } 
 
         public List<Lot> Lots { get; set; }
 

@@ -5,7 +5,6 @@ namespace D2Store.Domain.Entities.Items
 {
     public class Item : BaseEntity
     {
-        [ForeignKey(nameof(Hero))]
         public int HeroId { get; set; }
 
         public Hero Hero { get; set; }

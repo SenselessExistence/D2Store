@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using D2Store.Business.Services.Interfaces;
 
 namespace D2Store.Business.Tests.Services
 {
@@ -22,6 +23,7 @@ namespace D2Store.Business.Tests.Services
         private readonly Mock<RoleManager<ApplicationRole>> _roleManager;
         private readonly Mock<IClientRepository> _clientRepository;
         private readonly Mock<IClientProfileRepository> _profileRepository;
+        private readonly Mock<IEmailService> _emailService;
         private readonly IConfiguration _configuration;
         private readonly AuthorizationService _authorizationService;
 
@@ -35,12 +37,14 @@ namespace D2Store.Business.Tests.Services
             _roleManager = new Mock<RoleManager<ApplicationRole>>(_roleStore.Object, null, null, null, null);
             _clientRepository = new Mock<IClientRepository>();
             _profileRepository = new Mock<IClientProfileRepository>();
+            _emailService = new Mock<IEmailService>();
             _configuration = new ConfigurationBuilder().AddInMemoryCollection(GetConfig()).Build();
             _authorizationService = new AuthorizationService(_userManager.Object,
                 _roleManager.Object,
                 _clientRepository.Object,
                 _profileRepository.Object,
-                _configuration);
+                _configuration,
+                _emailService.Object);
         }
 
         

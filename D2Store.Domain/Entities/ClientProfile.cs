@@ -5,7 +5,6 @@ namespace D2Store.Domain.Entities
 {
     public class ClientProfile : BaseEntity
     {
-        [ForeignKey(nameof(Client))]
         public int ClientId { get; set; }
 
         public Client Client { get; set; }

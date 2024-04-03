@@ -20,10 +20,6 @@ namespace D2Store.DAL.EntityConfigurations
                 .WithOne(c => c.Client)
                 .HasForeignKey(c => c.ClientId);
 
-            builder.HasMany(c => c.Lots)
-                .WithOne()
-                .HasForeignKey(l => l.SellerClientId);
-
             builder.HasOne(c => c.ClientProfile)
                 .WithOne()
                 .HasForeignKey<Client>(c => c.ClientProfileId);
@@ -32,9 +28,7 @@ namespace D2Store.DAL.EntityConfigurations
                 .WithOne()
                 .HasForeignKey(i => i.ClientId);
 
-            builder.HasMany(c => c.RequestedItems)
-                .WithOne()
-                .HasForeignKey(r => r.ClientId);
+            builder
         }
     }
 }

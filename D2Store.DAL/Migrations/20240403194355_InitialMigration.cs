@@ -199,6 +199,7 @@ namespace D2Store.DAL.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ClientProfileId = table.Column<int>(type: "int", nullable: false),
                     Balance = table.Column<double>(type: "float", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -212,6 +213,11 @@ namespace D2Store.DAL.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Clients_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -241,6 +247,35 @@ namespace D2Store.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientFriends",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    FriendId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientFriends", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClientFriends_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClientFriends_Clients_FriendId",
+                        column: x => x.FriendId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClientProfiles",
                 columns: table => new
                 {
@@ -248,10 +283,10 @@ namespace D2Store.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Nickname = table.Column<string>(type: "nvarchar(18)", maxLength: 18, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nickname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     About = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -286,8 +321,7 @@ namespace D2Store.DAL.Migrations
                         name: "FK_ClientItems_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ClientItems_Items_ItemId",
                         column: x => x.ItemId,
@@ -347,12 +381,14 @@ namespace D2Store.DAL.Migrations
                         name: "FK_Lots_ClientItems_ClientItemId",
                         column: x => x.ClientItemId,
                         principalTable: "ClientItems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Lots_Clients_SellerClientId",
                         column: x => x.SellerClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -381,8 +417,7 @@ namespace D2Store.DAL.Migrations
                         name: "FK_CartLots_Lots_LotId",
                         column: x => x.LotId,
                         principalTable: "Lots",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -435,6 +470,16 @@ namespace D2Store.DAL.Migrations
                 column: "LotId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClientFriends_ClientId",
+                table: "ClientFriends",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientFriends_FriendId",
+                table: "ClientFriends",
+                column: "FriendId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ClientItems_ClientId",
                 table: "ClientItems",
                 column: "ClientId");
@@ -451,9 +496,15 @@ namespace D2Store.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clients_ClientId",
+                table: "Clients",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Clients_UserId",
                 table: "Clients",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_HeroId",
@@ -502,6 +553,9 @@ namespace D2Store.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "CartLots");
+
+            migrationBuilder.DropTable(
+                name: "ClientFriends");
 
             migrationBuilder.DropTable(
                 name: "ClientProfiles");

@@ -33,6 +33,9 @@ namespace D2Store.DAL.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ClientProfileId")
                         .HasColumnType("int");
 
@@ -50,9 +53,44 @@ namespace D2Store.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("D2Store.Domain.Entities.ClientFriends", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FriendId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("FriendId");
+
+                    b.ToTable("ClientFriends");
                 });
 
             modelBuilder.Entity("D2Store.Domain.Entities.ClientProfile", b =>
@@ -78,21 +116,24 @@ namespace D2Store.DAL.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Nickname")
                         .IsRequired()
-                        .HasMaxLength(18)
-                        .HasColumnType("nvarchar(18)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -543,13 +584,36 @@ namespace D2Store.DAL.Migrations
 
             modelBuilder.Entity("D2Store.Domain.Entities.Client", b =>
                 {
+                    b.HasOne("D2Store.Domain.Entities.Client", null)
+                        .WithMany("Friends")
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("D2Store.Domain.Entities.Identity.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne()
+                        .HasForeignKey("D2Store.Domain.Entities.Client", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("D2Store.Domain.Entities.ClientFriends", b =>
+                {
+                    b.HasOne("D2Store.Domain.Entities.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("D2Store.Domain.Entities.Client", "Friend")
+                        .WithMany()
+                        .HasForeignKey("FriendId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Friend");
                 });
 
             modelBuilder.Entity("D2Store.Domain.Entities.ClientProfile", b =>
@@ -568,7 +632,7 @@ namespace D2Store.DAL.Migrations
                     b.HasOne("D2Store.Domain.Entities.Client", "Client")
                         .WithMany("ClientItems")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("D2Store.Domain.Entities.Items.Item", "Item")
@@ -585,7 +649,7 @@ namespace D2Store.DAL.Migrations
             modelBuilder.Entity("D2Store.Domain.Entities.Items.Item", b =>
                 {
                     b.HasOne("D2Store.Domain.Entities.Hero", "Hero")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("HeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -596,7 +660,7 @@ namespace D2Store.DAL.Migrations
             modelBuilder.Entity("D2Store.Domain.Entities.Items.RequestedItem", b =>
                 {
                     b.HasOne("D2Store.Domain.Entities.Client", "Client")
-                        .WithMany()
+                        .WithMany("RequestedItems")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -623,7 +687,7 @@ namespace D2Store.DAL.Migrations
                     b.HasOne("D2Store.Domain.Entities.Lots.Lot", "Lot")
                         .WithMany()
                         .HasForeignKey("LotId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Client");
@@ -636,13 +700,13 @@ namespace D2Store.DAL.Migrations
                     b.HasOne("D2Store.Domain.Entities.Items.ClientItem", "ClientItem")
                         .WithOne("Lot")
                         .HasForeignKey("D2Store.Domain.Entities.Lots.Lot", "ClientItemId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("D2Store.Domain.Entities.Client", "SellerClient")
                         .WithMany("Lots")
                         .HasForeignKey("SellerClientId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ClientItem");
@@ -710,7 +774,16 @@ namespace D2Store.DAL.Migrations
                     b.Navigation("ClientProfile")
                         .IsRequired();
 
+                    b.Navigation("Friends");
+
                     b.Navigation("Lots");
+
+                    b.Navigation("RequestedItems");
+                });
+
+            modelBuilder.Entity("D2Store.Domain.Entities.Hero", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("D2Store.Domain.Entities.Items.ClientItem", b =>

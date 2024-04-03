@@ -21,6 +21,8 @@ namespace D2Store.Initialization
             services.AddScoped<AppInitializer>();
             services.AddScoped<DataContext>();
 
+            services.AddScoped<IEmailService, EmailService>();
+
             services.AddScoped<IAuthorizationService, AuthorizationService>();
 
             services.AddScoped<IClientProfileRepository, ClientProfileRepository>();

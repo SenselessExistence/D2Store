@@ -13,13 +13,17 @@ namespace D2Store.Business.Tests.Services
     {
         private readonly Mock<IMapper> _mapper;
         private readonly Mock<ILotRepository> _lotRepository;
+        private readonly Mock<IClientRepository> _clientRepository;
+        private readonly Mock<IClientItemRepository> _itemRepository;
         private readonly LotService _lotService;
 
         public LotServiceTests()
         {
             _mapper = new Mock<IMapper>();
             _lotRepository = new Mock<ILotRepository>();
-            _lotService = new LotService(_lotRepository.Object, _mapper.Object);
+            _clientRepository = new Mock<IClientRepository>();
+            _itemRepository = new Mock<IClientItemRepository>();
+            _lotService = new LotService(_lotRepository.Object, _mapper.Object, _clientRepository.Object, _itemRepository.Object);
         }
 
         #region AddLotAsync

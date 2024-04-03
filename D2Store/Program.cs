@@ -71,13 +71,11 @@ ServiceBuilder.BuildServices(builder.Services);
 
 var app = builder.Build();
 
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
-
 else
 {
     app.UseSwagger();
@@ -119,7 +117,7 @@ using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider()
 
             await appInitializer.InitializeDefaultData();
 
-            int result = context.Initialize().Result;
+            int result = await context.Initialize();
         }
         catch
         {
