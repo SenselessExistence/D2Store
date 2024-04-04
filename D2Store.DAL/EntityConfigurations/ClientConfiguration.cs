@@ -28,7 +28,21 @@ namespace D2Store.DAL.EntityConfigurations
                 .WithOne()
                 .HasForeignKey(i => i.ClientId);
 
-            builder
+            builder.HasMany(c => c.Friends)
+                .WithMany()
+                .UsingEntity<ClientFriends>(
+                j => j
+                .HasOne(cf => cf.Friend)
+                .WithMany()
+                .HasForeignKey(cf => cf.FriendId),
+                j => j
+                .HasOne(cf => cf.Client)
+                .WithMany()
+                .HasForeignKey(cf => cf.ClientId),
+                j =>
+                {
+                    j.HasKey(cf => new { cf.ClientId, cf.FriendId });
+                });
         }
     }
 }

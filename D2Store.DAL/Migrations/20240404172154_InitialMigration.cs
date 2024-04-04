@@ -199,7 +199,6 @@ namespace D2Store.DAL.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ClientProfileId = table.Column<int>(type: "int", nullable: false),
                     Balance = table.Column<double>(type: "float", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -213,11 +212,6 @@ namespace D2Store.DAL.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Clients_Clients_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -250,17 +244,16 @@ namespace D2Store.DAL.Migrations
                 name: "ClientFriends",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     FriendId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClientFriends", x => x.Id);
+                    table.PrimaryKey("PK_ClientFriends", x => new { x.ClientId, x.FriendId });
                     table.ForeignKey(
                         name: "FK_ClientFriends_Clients_ClientId",
                         column: x => x.ClientId,
@@ -271,8 +264,7 @@ namespace D2Store.DAL.Migrations
                         name: "FK_ClientFriends_Clients_FriendId",
                         column: x => x.FriendId,
                         principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -470,11 +462,6 @@ namespace D2Store.DAL.Migrations
                 column: "LotId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientFriends_ClientId",
-                table: "ClientFriends",
-                column: "ClientId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClientFriends_FriendId",
                 table: "ClientFriends",
                 column: "FriendId");
@@ -494,11 +481,6 @@ namespace D2Store.DAL.Migrations
                 table: "ClientProfiles",
                 column: "ClientId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clients_ClientId",
-                table: "Clients",
-                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_UserId",

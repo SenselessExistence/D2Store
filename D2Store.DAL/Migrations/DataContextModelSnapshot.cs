@@ -33,9 +33,6 @@ namespace D2Store.DAL.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ClientProfileId")
                         .HasColumnType("int");
 
@@ -53,8 +50,6 @@ namespace D2Store.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -63,19 +58,16 @@ namespace D2Store.DAL.Migrations
 
             modelBuilder.Entity("D2Store.Domain.Entities.ClientFriends", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClientId")
+                    b.Property<int>("FriendId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FriendId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -84,9 +76,7 @@ namespace D2Store.DAL.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
+                    b.HasKey("ClientId", "FriendId");
 
                     b.HasIndex("FriendId");
 
@@ -584,10 +574,6 @@ namespace D2Store.DAL.Migrations
 
             modelBuilder.Entity("D2Store.Domain.Entities.Client", b =>
                 {
-                    b.HasOne("D2Store.Domain.Entities.Client", null)
-                        .WithMany("Friends")
-                        .HasForeignKey("ClientId");
-
                     b.HasOne("D2Store.Domain.Entities.Identity.ApplicationUser", "ApplicationUser")
                         .WithOne()
                         .HasForeignKey("D2Store.Domain.Entities.Client", "UserId")
@@ -608,7 +594,7 @@ namespace D2Store.DAL.Migrations
                     b.HasOne("D2Store.Domain.Entities.Client", "Friend")
                         .WithMany()
                         .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Client");
@@ -773,8 +759,6 @@ namespace D2Store.DAL.Migrations
 
                     b.Navigation("ClientProfile")
                         .IsRequired();
-
-                    b.Navigation("Friends");
 
                     b.Navigation("Lots");
 

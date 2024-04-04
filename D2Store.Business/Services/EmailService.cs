@@ -8,7 +8,7 @@ namespace D2Store.Business.Services
     public class EmailService : IEmailService
     {
         private readonly string _smtpServer = "smtp.gmail.com";
-        private readonly int _smtpPort = 587;
+        private readonly int _smtpPort = 465;
         private readonly string _smtpUsername = "knight.of.lotric@gmail.com";
         private readonly string _smtpPassword = "32184002Gb";
 
