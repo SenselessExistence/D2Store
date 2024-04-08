@@ -75,8 +75,6 @@ namespace D2Store.Business.Services
 
             await InitializeClientData(registerClient.Nickname, createdUser.Id);
 
-            await _emailService.SendEmailAsync(user.Email, registerClient.Nickname);
-
             return true;
 
         }

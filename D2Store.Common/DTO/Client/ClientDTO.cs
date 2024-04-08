@@ -8,8 +8,8 @@ namespace D2Store.Common.DTO.Client
     {
         public int UserId { get; set; }
 
-        public ClientProfileDTO Profile { get; set; }
+        public int ClientProfileId { get; set; }
 
-        public CartLot Cart { get; set; }
+        public double Balance { get; set; }
     }
 }

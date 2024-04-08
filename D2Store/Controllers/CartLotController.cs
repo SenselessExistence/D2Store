@@ -47,7 +47,7 @@ namespace D2Store.Controllers
         }
 
         [HttpDelete]
-        [Route("{clientId}")]
+        [Route("client/{clientId}")]
         public async Task<IActionResult> RemoveAllLotsFromCartByClientId(int clientId)
         {
             await _cartLotService.RemoveAllLotsFromCartByClientIdAsync(clientId);

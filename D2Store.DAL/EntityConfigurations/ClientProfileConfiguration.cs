@@ -25,7 +25,7 @@ namespace D2Store.DAL.EntityConfigurations
                 .IsRequired(false);
 
             builder.Property(c => c.PhoneNumber)
-                .HasMaxLength(10)
+                .HasMaxLength(13)
                 .IsRequired(false);
 
             builder.Property(c => c.Nickname)

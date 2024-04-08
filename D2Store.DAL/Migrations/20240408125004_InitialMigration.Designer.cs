@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240404172154_InitialMigration")]
+    [Migration("20240408125004_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -125,8 +125,8 @@ namespace D2Store.DAL.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
