@@ -58,7 +58,10 @@ namespace D2Store.Business.Services
 
             if (!result.Succeeded)
             {
-                    throw new Exception($"Failed to register.");
+                foreach (var item in result.Errors)
+                {
+                    throw new Exception($"{item.Description}");
+                }
             }
 
             if (await _roleManager.RoleExistsAsync(DefaultRole))
