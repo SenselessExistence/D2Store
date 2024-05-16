@@ -60,6 +60,15 @@ namespace D2Store.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("paginated")]
+        public async Task<IActionResult> GetPagedLotsAsync(int page = 1, int pageSize = 20)
+        {
+            var result = await _lotService.GetPagedLotsAsync(page, pageSize);
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("buy")]
         public async Task<IActionResult> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)

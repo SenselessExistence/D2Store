@@ -27,6 +27,7 @@ namespace D2Store.Initialization
 
             services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
             services.AddScoped<IClientProfileService, ClientProfileServices>();
+            services.AddScoped<IClientItemRepository, ClientItemRepository>();
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IClientService, ClientService>();

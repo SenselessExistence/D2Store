@@ -83,6 +83,16 @@ namespace D2Store.DAL.Repository
             return await GetByIdAsync(id);
         }
 
+        public async Task<int> GetLotsCountAsync()
+        {
+            return await _context.Lots.CountAsync();
+        }
+
+        public IQueryable<Lot> GetLotsQueryable()
+        {
+            return _context.Lots.AsQueryable();
+        }
+
         public async Task<bool> RemoveLotByIdAsync(int lotId)
         {
             return await RemoveByIdAsync(lotId);

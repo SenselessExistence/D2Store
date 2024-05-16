@@ -1,4 +1,5 @@
-﻿using D2Store.Common.DTO.Lot;
+﻿using D2Store.Common.DTO;
+using D2Store.Common.DTO.Lot;
 using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.Business.Services.Interfaces
@@ -14,6 +15,8 @@ namespace D2Store.Business.Services.Interfaces
         Task<LotDTO> GetLotByIdAsync(int lotId);
 
         Task<List<LotDTO>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters);
+
+        Task<PagedResponse<LotDTO>> GetPagedLotsAsync(int page, int pageSize);
 
         Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO);
 

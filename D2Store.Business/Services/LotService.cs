@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using D2Store.Business.Services.Interfaces;
+using D2Store.Common.DTO;
 using D2Store.Common.DTO.Lot;
+using D2Store.DAL.Extensions;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities.Lots;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace D2Store.Business.Services
@@ -71,6 +74,25 @@ namespace D2Store.Business.Services
             var result = _mapper.Map<List<LotDTO>>(filteredLots);
 
             return result;
+        }
+
+        public async Task<PagedResponse<LotDTO>> GetPagedLotsAsync(int page, int pageSize)
+        {
+            var totalCount = await _lotRepository.GetLotsCountAsync();
+            
+            var lots = _lotRepository.GetLotsQueryable()
+                                     .Paginate(page, pageSize)
+                                     .ToListAsync();
+
+            var lotDTOs = _mapper.Map<List<LotDTO>>(lots);
+
+            var response = new PagedResponse<LotDTO>
+            {
+                Data = lotDTOs,
+                TotalCount = totalCount
+            };
+
+            return response;
         }
 
         public async Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
