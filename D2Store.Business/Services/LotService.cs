@@ -79,8 +79,8 @@ namespace D2Store.Business.Services
         public async Task<PagedResponse<LotDTO>> GetPagedLotsAsync(int page, int pageSize)
         {
             var totalCount = await _lotRepository.GetLotsCountAsync();
-            
-            var lots = _lotRepository.GetLotsQueryable()
+
+            var lots = await _lotRepository.GetLotsQueryable()
                                      .Paginate(page, pageSize)
                                      .ToListAsync();
 

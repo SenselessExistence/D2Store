@@ -138,13 +138,18 @@ namespace D2Store.Business.Services
 
         private async Task InitializeClientData(string nickname, int userId)
         {
-            var client = new Client ()
+            var client = new Client()
             {
                 UserId = userId
             };
 
             await _clientRepository.AddClientAsync(client);
 
+            await NewMethod(nickname, userId, client);
+        }
+
+        private async Task NewMethod(string nickname, int userId, Client client)
+        {
             var profile = new ClientProfile
             {
                 ClientId = client.Id,

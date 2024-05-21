@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240408125004_InitialMigration")]
+    [Migration("20240520181741_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -411,9 +411,6 @@ namespace D2Store.DAL.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<double>("ExpectedPrice")
-                        .HasColumnType("float");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

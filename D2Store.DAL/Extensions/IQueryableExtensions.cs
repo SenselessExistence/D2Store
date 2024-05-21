@@ -2,9 +2,9 @@
 {
     public static class IQueryableExtensions
     {
-        public static IQueryable<T>Paginate<T>(this IQueryable<T> sourse, int page, int pageSize)
+        public static IQueryable<T> Paginate<T>(this IQueryable<T> source, int page, int pageSize)
         {
-            return sourse.Skip((page)*pageSize).Take(pageSize);
+            return source.Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

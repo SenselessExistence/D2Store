@@ -55,8 +55,14 @@ namespace D2Store.Initialization
         {
             var mapperConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new ItemMapperProfile());
+                mc.AddProfile(new HeroMapperProfile());
+                mc.AddProfile(new LotMapperProfile());
+                mc.AddProfile(new RequestedItemMapperProfile());
+                mc.AddProfile(new ClientItemMapperProfile());
                 mc.AddProfile(new ClientMapperProfile());
                 mc.AddProfile(new ClientProfileMapperProfile());
+                mc.AddProfile(new CartLotMapperProfile());
             });
 
             return mapperConfig.CreateMapper();
