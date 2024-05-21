@@ -1,9 +1,11 @@
-﻿using D2Store.Business.Services.Interfaces;
+﻿using AutoMapper;
+using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Authentication;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
 using D2Store.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -76,7 +78,13 @@ namespace D2Store.Business.Services
 
             var createdUser = await _userManager.FindByEmailAsync(registerClient.Email);
 
-            await InitializeClientData(registerClient.Nickname, createdUser.Id);
+            var initializedClient = await InitializeClientData(registerClient.Nickname, createdUser.Id);
+
+            var initializedProfile = await InitializeProfileData(registerClient.Nickname, initializedClient);
+
+            initializedClient.ClientProfileId = initializedProfile.Id;
+
+            await _clientRepository.UpdateClientAsync(initializedClient);
 
             return true;
 
@@ -136,28 +144,27 @@ namespace D2Store.Business.Services
             return token;
         }
 
-        private async Task InitializeClientData(string nickname, int userId)
+        private async Task<Client> InitializeClientData(string nickname, int userId)
         {
             var client = new Client()
             {
                 UserId = userId
             };
 
-            await _clientRepository.AddClientAsync(client);
-
-            await NewMethod(nickname, userId, client);
+            return await _clientRepository.AddClientAsync(client);
         }
 
-        private async Task NewMethod(string nickname, int userId, Client client)
+        private async Task<ClientProfile> InitializeProfileData(string nickname, Client client)
         {
             var profile = new ClientProfile
             {
-                ClientId = client.Id,
                 Nickname = nickname,
-                FirstName = $"User{userId}"
+                ClientId = client.Id,
+                FirstName = $"User{client.UserId}"
+                
             };
 
-            await _clientProfileRepository.CreateProfileAsync(profile);
+            return await _clientProfileRepository.CreateProfileAsync(profile);
         }
     }
 }
