@@ -44,7 +44,7 @@ namespace D2Store.Business.Services
         {
             var requestedItem = await _requestedItemRepository.GetRequestedItemByIdAsync(requestedItemId);
 
-            if(requestedItem == null)
+            if (requestedItem == null)
             {
                 throw new Exception("Request item not found");
             }

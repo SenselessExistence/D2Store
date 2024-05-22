@@ -9,8 +9,8 @@ namespace D2Store.Business.Services.Interfaces
 {
     public interface IAuthorizationService
     {
-        Task<bool> Register(RegisterModel registerClient);
+        Task<bool> RegisterAsync(RegisterModel registerClient);
 
-        Task<AuthorizationToken> Login(LoginModel loginModel);
+        Task<AuthorizationToken> LoginAsync(LoginModel loginModel);
     }
 }

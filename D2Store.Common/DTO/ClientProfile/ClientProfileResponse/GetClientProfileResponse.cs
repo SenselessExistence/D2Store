@@ -1,6 +1,6 @@
 ﻿namespace D2Store.Common.DTO.ClientProfile.ClientProfileResponse
 {
-    public class GetClientProfileResponse : BaseDTO
+    public class GetClientProfileResponse
     {
         public int ClientId { get; set; }
 

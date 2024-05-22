@@ -11,7 +11,6 @@ namespace D2Store.DAL.Repository
         public LotRepository(DataContext context) 
             : base(context)
         {
-            
         }
 
 
@@ -32,6 +31,7 @@ namespace D2Store.DAL.Repository
         {
             var clientLots = await _context.Lots
                 .Where(l => l.SellerClientId == clientId)
+                .OrderBy(l => l.Price)
                 .ToListAsync();
 
             return clientLots;
@@ -46,7 +46,8 @@ namespace D2Store.DAL.Repository
                 query = query.Include(l => l.ClientItem)
                     .ThenInclude(ci => ci.Item)
                     .ThenInclude(i => i.Hero)
-                    .Where(l => l.ClientItem.Item.Hero.HeroName.Contains(lotFilters.HeroName));
+                    .Where(l => l.ClientItem.Item.Hero.HeroName.Contains(lotFilters.HeroName))
+                    .OrderBy(l => l.Price);
                     
             }
 
@@ -54,24 +55,28 @@ namespace D2Store.DAL.Repository
             {
                 query = query.Include(l => l.ClientItem)
                     .ThenInclude(ci => ci.Item)
-                    .Where(l => l.ClientItem.Item.ItemName.Contains(lotFilters.ItemName));
+                    .Where(l => l.ClientItem.Item.ItemName.Contains(lotFilters.ItemName))
+                    .OrderBy(l => l.Price);
             }
 
             if (lotFilters.MinPrice.HasValue)
             {
-                query = query.Where(l => l.Price >= lotFilters.MinPrice.Value);
+                query = query.Where(l => l.Price >= lotFilters.MinPrice.Value)
+                    .OrderBy(l => l.Price);
             }
             
             if(lotFilters.MaxPrice.HasValue)
             {
-                query = query.Where(l => l.Price <= lotFilters.MaxPrice.Value);
+                query = query.Where(l => l.Price <= lotFilters.MaxPrice.Value)
+                    .OrderBy(l => l.Price);
             }
 
             if(lotFilters.Rarity.HasValue)
             {
                 query = query.Include(l => l.ClientItem)
                     .ThenInclude(ci => ci.Item)
-                    .Where(l => l.ClientItem.Item.Rarity == lotFilters.Rarity);
+                    .Where(l => l.ClientItem.Item.Rarity == lotFilters.Rarity)
+                    .OrderBy(l => l.Price);
                     
             }
 

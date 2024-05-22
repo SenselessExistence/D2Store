@@ -2,7 +2,7 @@
 
 namespace D2Store.Common.DTO.Item
 {
-    public class ItemDTO : BaseDTO
+    public class ItemDTO
     {
         public int HeroId { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace D2Store.Common.DTO.Lot
 {
-    public class LotDTO : BaseDTO
+    public class LotDTO
     {
         public int ClientItemId { get; set; }
 
@@ -10,6 +10,6 @@ namespace D2Store.Common.DTO.Lot
 
         public double Price { get; set; }
 
-        public DateTime? SellDate { get; set; }
+        public DateTime? SellDate { get; set; } = null;
     }
 }

@@ -4,7 +4,7 @@ using D2Store.Domain.Entities.Lots;
 
 namespace D2Store.Common.DTO.Client
 {
-    public class ClientDTO : BaseDTO
+    public class ClientDTO
     {
         public int UserId { get; set; }
 

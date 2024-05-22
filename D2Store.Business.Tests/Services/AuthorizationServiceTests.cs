@@ -101,7 +101,7 @@ namespace D2Store.Business.Tests.Services
             _userManager.Setup(x => x.AddToRoleAsync(applicationUser, DefaultRole));
 
             //Act
-            bool result = await _authorizationService.Register(register);
+            bool result = await _authorizationService.RegisterAsync(register);
 
             //Assert
             Assert.True(result);
@@ -126,7 +126,7 @@ namespace D2Store.Business.Tests.Services
 
             _userManager.Setup(x => x.FindByEmailAsync(registerModel.Email)).Returns(Task.FromResult(applicationUser));
 
-            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.Register(registerModel));
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.RegisterAsync(registerModel));
 
             Assert.Equal(exceptionMsg, result.Message);
         }
@@ -168,7 +168,7 @@ namespace D2Store.Business.Tests.Services
             _userManager.Setup(x => x.FindByEmailAsync(register.Email)).Returns(Task.FromResult((ApplicationUser)null));
             _userManager.Setup(x => x.CreateAsync(It.IsAny<ApplicationUser>(), register.Password)).ReturnsAsync(identityResult);
 
-            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.Register(register));
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.RegisterAsync(register));
 
             Assert.Equal(exceptionMsg, result.Message);
         }
@@ -211,7 +211,7 @@ namespace D2Store.Business.Tests.Services
             _userManager.Setup(x => x.CreateAsync(It.IsAny<ApplicationUser>(), register.Password)).ReturnsAsync(identityResult);
             _roleManager.Setup(x => x.RoleExistsAsync(DefaultRole)).Returns(Task.FromResult(false));
 
-            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.Register(register));
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.RegisterAsync(register));
 
             Assert.Equal(exceptionMsg, result.Message);
         }
@@ -260,7 +260,7 @@ namespace D2Store.Business.Tests.Services
             _userManager.Setup(x => x.FindByEmailAsync(loginModel.Email)).ReturnsAsync(user);
             _userManager.Setup(x => x.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
             _userManager.Setup(x => x.GetRolesAsync(user)).Returns(Task.FromResult(userRoles));
-            var result = await _authorizationService.Login(loginModel);
+            var result = await _authorizationService.LoginAsync(loginModel);
 
             // Assert
             Assert.NotNull(result);
@@ -281,7 +281,7 @@ namespace D2Store.Business.Tests.Services
 
             _userManager.Setup(x => x.FindByEmailAsync(loginModel.Email)).Returns(Task.FromResult((ApplicationUser)null));
 
-            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.Login(loginModel));
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.LoginAsync(loginModel));
 
             Assert.Equal(exceptionMsg, result.Message);
         }
@@ -302,7 +302,7 @@ namespace D2Store.Business.Tests.Services
             _userManager.Setup(x => x.FindByEmailAsync(loginModel.Email)).Returns(Task.FromResult(user));
             _userManager.Setup(x => x.CheckPasswordAsync(user, loginModel.Password)).Returns(Task.FromResult(false));
 
-            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.Login(loginModel));
+            var result = await Assert.ThrowsAsync<Exception>(async () => await _authorizationService.LoginAsync(loginModel));
 
             Assert.Equal(exceptionMsg, result.Message);
         }
