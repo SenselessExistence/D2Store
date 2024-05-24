@@ -1,4 +1,5 @@
 using AutoMapper;
+using D2Store.Business.ExceptionHandler;
 using D2Store.DAL;
 using D2Store.DAL.AppInitializer;
 using D2Store.Domain.Entities.Identity;
@@ -104,6 +105,8 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware<ExceptionHandler>();
 
 app.UseCors("AllowAllOrigins");
 

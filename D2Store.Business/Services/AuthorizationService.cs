@@ -120,7 +120,7 @@ namespace D2Store.Business.Services
 
             if (clientExist == null)
             {
-                throw new Exception($"User with Email:{}");
+                throw new Exception($"User with Email:{clientExist.Email} is not exist!");
             }
         }
         
