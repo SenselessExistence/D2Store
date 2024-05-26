@@ -24,7 +24,7 @@ namespace D2Store.DAL.AppInitializer
             _dataContext = dataContext;
         }
 
-        public async Task InitializeDefaultData()
+        public async Task InitializeDefaultDataAsync()
         {
             string completeMigrationId = "AD18BAF7-A489-443B-B542-68BE9BC936EE";
             if (!await _dataContext.CompleteMigrations.AnyAsync(m => m.CompleteMigrationId == completeMigrationId))
@@ -38,14 +38,17 @@ namespace D2Store.DAL.AppInitializer
 
                 _dataContext.CompleteMigrations.Add(new CompleteMigration { CompleteMigrationId = completeMigrationId });
 
-                await CreateDefaultHeroes();
-                await CreateDefaultItems();
+                await CreateDefaultUsersAsync();
+                await CreateDefaultClientsAsync();
+                await CreateDefaultHeroesAsync();
+                await CreateDefaultItemsAsync();
+                await CreateDefaultClientItemsAsync();
 
                 await _dataContext.SaveChangesAsync();
             }
-
         }
 
+        #region Private methods
         private async Task<IdentityResult> CreateRolesAsync()
         {
             List<ApplicationRole> roles = new List<ApplicationRole>()
@@ -83,7 +86,7 @@ namespace D2Store.DAL.AppInitializer
             return result;
         }
 
-        public async Task CreateDefaultHeroes()
+        private async Task CreateDefaultHeroesAsync()
         {
             List<Hero> heroes = new List<Hero>()
             {
@@ -118,7 +121,7 @@ namespace D2Store.DAL.AppInitializer
             await _dataContext.SaveChangesAsync();
         }
 
-        public async Task CreateDefaultItems()
+        private async Task CreateDefaultItemsAsync()
         {
             List<Item> items = new List<Item>
             {
@@ -168,5 +171,101 @@ namespace D2Store.DAL.AppInitializer
 
             await _dataContext.SaveChangesAsync();
         }
+
+        private async Task CreateDefaultUsersAsync()
+        {
+            List<ApplicationUser> users = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    UserName = "Chad",
+                    Email = "chad@gmail.com",
+                    PhoneNumber = "390734162312"
+                },
+                new ApplicationUser
+                {
+                    UserName = "Kassel",
+                    Email = "kassel.tinker@gmail.com",
+                    PhoneNumber = "380934651285"
+                },
+                new ApplicationUser
+                {
+                    UserName = "Lens",
+                    Email = "lens.doto@gmail.com",
+                    PhoneNumber = "389652384326"
+                },
+                new ApplicationUser
+                {
+                    UserName = "Noname",
+                    Email = "nonamedoto@gmail.com",
+                    PhoneNumber = "380734454512"
+                }
+            };
+         
+            foreach (var user in users)
+            {
+                await _userManager.CreateAsync(user, "32184002Gb");
+
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+        }
+
+        private async Task CreateDefaultClientsAsync()
+        {
+            List<Client> clients = new List<Client>
+            {
+                new Client
+                {
+                    UserId = 2,
+                    Balance = 2000,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                },
+                new Client
+                {
+                    UserId = 3,
+                    Balance = 1350,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                },
+                new Client
+                {
+                    UserId = 4,
+                    Balance = 1590,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                },
+                new Client
+                {
+                    UserId = 5,
+                    Balance = 10000,
+                    IsActive = true,
+                    CreatedDate = DateTime.Now
+                }
+            };
+
+            await _dataContext.Clients.AddRangeAsync(clients);
+            
+            await _dataContext.SaveChangesAsync();
+        }
+
+        private async Task CreateDefaultClientItemsAsync()
+        {
+            List<ClientItem> clientItems = new List<ClientItem>();
+
+            for (int i = 0; i < 15; i++)
+            {
+                clientItems.Add(new ClientItem
+                                {
+                                    ClientId = new Random().Next(2, 5),
+                                    ItemId = new Random().Next(1, 5),
+                                    CreatedDate = DateTime.UtcNow
+                                });
+            }
+
+            await _dataContext.ClientItems.AddRangeAsync(clientItems);
+            await _dataContext.SaveChangesAsync();
+        }
+        #endregion
     }
 }

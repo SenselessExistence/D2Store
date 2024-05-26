@@ -55,6 +55,7 @@ namespace D2Store.Business.Services
             return await _clientProfileRepository.RemoveClientProfileByIdAsync(id);
         }
 
+        #region Private methods
         private void UpdateProfileData(ClientProfile clientProfile, ClientProfileDTO profileDTO)
         {
             clientProfile.FirstName = profileDTO.FirstName;
@@ -63,5 +64,6 @@ namespace D2Store.Business.Services
             clientProfile.About = profileDTO.About;
             clientProfile.Nickname = profileDTO.Nickname;
         }
+        #endregion
     }
 }

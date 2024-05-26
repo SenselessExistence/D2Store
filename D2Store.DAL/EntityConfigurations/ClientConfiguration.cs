@@ -21,7 +21,9 @@ namespace D2Store.DAL.EntityConfigurations
                 .HasForeignKey(c => c.ClientId);
 
             builder.HasOne(c => c.ClientProfile)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey<ClientProfile>(cp => cp.ClientId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.ClientItems)
                 .WithOne()

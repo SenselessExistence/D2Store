@@ -106,7 +106,7 @@ app.UseSwaggerUI(c =>
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseMiddleware<ExceptionHandler>();
+app.UseMiddleware<ExceptionHandlerMiddleWare>();
 
 app.UseCors("AllowAllOrigins");
 
@@ -131,7 +131,7 @@ using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider()
 
             AppInitializer appInitializer = serviceProvider.GetService<AppInitializer>();
 
-            await appInitializer.InitializeDefaultData();
+            await appInitializer.InitializeDefaultDataAsync();
 
             int result = await context.Initialize();
         }

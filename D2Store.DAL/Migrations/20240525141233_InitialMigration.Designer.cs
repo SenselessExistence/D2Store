@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace D2Store.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240520181741_InitialMigration")]
+    [Migration("20240525141233_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -35,9 +35,6 @@ namespace D2Store.DAL.Migrations
 
                     b.Property<double>("Balance")
                         .HasColumnType("float");
-
-                    b.Property<int>("ClientProfileId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");

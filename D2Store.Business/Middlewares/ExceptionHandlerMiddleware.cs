@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Logging;
+using D2Store.Business.Exceptions;
 using D2Store.Common.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -7,13 +8,13 @@ using System.Text.Json;
 
 namespace D2Store.Business.ExceptionHandler
 {
-    public class ExceptionHandler
+    public class ExceptionHandlerMiddleWare
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionHandler> _logger;
+        private readonly ILogger<ExceptionHandlerMiddleWare> _logger;
 
-        public ExceptionHandler(RequestDelegate next,
-            ILogger<ExceptionHandler> logger)
+        public ExceptionHandlerMiddleWare(RequestDelegate next,
+            ILogger<ExceptionHandlerMiddleWare> logger)
         {
             _next = next;
             _logger = logger;
@@ -25,12 +26,12 @@ namespace D2Store.Business.ExceptionHandler
             {
                 await _next(httpContext);
             }
-            catch (KeyNotFoundException ex)
+            catch (ClientNotFoundException ex)
             {
                 await HandleExceptionAsync(httpContext,
                     ex.Message,
                     HttpStatusCode.NotFound,
-                    "Not found");
+                    "asdasdasd");
             }
         }
 

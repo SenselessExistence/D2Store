@@ -57,7 +57,7 @@ namespace D2Store.Business.Services
 
         public async Task<AuthorizationToken> LoginAsync(LoginModel loginModel)
         {
-            var user = await CheckIsUserNotExistsAsync(loginModel.Email);
+            var user = await CheckIsUserExistAsync(loginModel.Email);
 
             return await CheckPasswordAsync(loginModel, user);
         }
@@ -96,7 +96,6 @@ namespace D2Store.Business.Services
                 Nickname = nickname,
                 ClientId = clientId,
                 FirstName = $"User{userId}"
-                
             };
 
             return await _clientProfileRepository.CreateProfileAsync(profile);
@@ -114,14 +113,16 @@ namespace D2Store.Business.Services
             return clientExist;
         }
         
-        private async Task CheckIsUserExistAsync(string email)
+        private async Task<ApplicationUser> CheckIsUserExistAsync(string email)
         {
             var clientExist = await _userManager.FindByEmailAsync(email);
 
             if (clientExist == null)
             {
-                throw new Exception($"User with Email:{clientExist.Email} is not exist!");
+                throw new Exception($"User with Email: {email} is not exist!");
             }
+
+            return clientExist;
         }
         
         private async Task<ApplicationUser> CreateApplicationUserAsync(RegisterModel registerClient)
