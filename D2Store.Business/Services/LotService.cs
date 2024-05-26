@@ -91,17 +91,11 @@ namespace D2Store.Business.Services
             return CreatePagedResponseAsync(totalCount, lotDTOs);
         }
 
-        public async Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
+        public async Task BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
         {
-            var client = await _clientRepository.GetClientByIdAsync(buyLotRequestDTO.BuyerId);
-            var lot = await _lotRepository.GetLotByIdAsync(buyLotRequestDTO.LotId);
-            var item = await _itemRepository.GetClientItemByIdAsync(lot.ClientItemId);
+            await ClientLot(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
 
-            ValidatePurchase(client.Balance, lot);
-
-            await ProcessPurchase(buyLotRequestDTO, client, lot, item);
-
-            return true;
+            await Item(buyLotRequestDTO.BuyerId);
         }
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)
@@ -137,31 +131,39 @@ namespace D2Store.Business.Services
                 TotalCount = totalCount
             };
         }
-        
-        private async Task ProcessPurchase(BuyLotRequestDTO buyLotRequestDTO, Client client, Lot lot, ClientItem item)
+
+        //Rename
+        private async Task ClientLot(int clientId, int lotId)
         {
+            var client = await _clientRepository.GetClientByIdAsync(clientId);
+
+            var lot = await _lotRepository.GetLotByIdAsync(lotId);
+
+            if (!lot.IsActive)
+            {
+                throw new Exception("Lot is not active.");
+            }
+
+            if (client.Balance < lot.Price)
+            {
+                throw new Exception("Insufficient funds on account.");
+            }
+
             client.Balance -= lot.Price;
             await _clientRepository.UpdateClientAsync(client);
-
-            item.ClientId = buyLotRequestDTO.BuyerId;
-            await _itemRepository.UpdateClientItemAsync(item);
 
             lot.SellDate = DateTime.Now;
             lot.IsActive = false;
             await _lotRepository.UpdateLotAsync(lot);
         }
         
-        private void ValidatePurchase(double clientBalance, Lot lot)
+        //Rename
+        private async Task Item(int clientId)
         {
-            if (!lot.IsActive)
-            {
-                throw new Exception("Lot is not active.");
-            }
+            var item = await _itemRepository.GetClientItemByIdAsync(lot.ClientItemId);
 
-            if (clientBalance < lot.Price)
-            {
-                throw new Exception("Insufficient funds on account.");
-            }
+            item.ClientId = clientId;
+            await _itemRepository.UpdateClientItemAsync(item);
         }
         #endregion
     }

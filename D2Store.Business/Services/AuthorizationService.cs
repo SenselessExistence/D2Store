@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Authentication;
 using D2Store.DAL.Repository.Interfaces;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security;
 using System.Security.Claims;
 using System.Text;
 
@@ -107,7 +109,7 @@ namespace D2Store.Business.Services
 
             if (clientExist != null)
             {
-                throw new Exception("User with that Email already exist");
+                throw new VerificationException($"User with Email: {email} already exist!");
             }
 
             return clientExist;

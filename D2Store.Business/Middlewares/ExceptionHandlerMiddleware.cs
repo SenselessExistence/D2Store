@@ -3,7 +3,10 @@ using D2Store.Business.Exceptions;
 using D2Store.Common.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Security;
 using System.Text.Json;
 
 namespace D2Store.Business.ExceptionHandler
@@ -26,36 +29,37 @@ namespace D2Store.Business.ExceptionHandler
             {
                 await _next(httpContext);
             }
-            catch (ClientNotFoundException ex)
+            catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext,
-                    ex.Message,
-                    HttpStatusCode.NotFound,
-                    "asdasdasd");
+                httpContext.Response.StatusCode = ex switch
+                {
+                    ValidationException => (int)HttpStatusCode.BadRequest,
+                    SecurityTokenValidationException => (int)HttpStatusCode.BadRequest,
+                    ArgumentNullException => (int)HttpStatusCode.NotFound,
+                    VerificationException => (int)HttpStatusCode.NotFound,
+                    ForbiddenException => (int)HttpStatusCode.Forbidden,
+                    _ => (int)HttpStatusCode.InternalServerError
+                };
+
+                await CreateExceptionResponseAsync(httpContext, ex.Message);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext httpContext,
-            string exceptionMessage,
-            HttpStatusCode httpStatusCode,
-            string message)
+        private async Task CreateExceptionResponseAsync(HttpContext context, string message)
         {
-            _logger.LogError(exceptionMessage);
+            _logger.LogError(message);
 
-            HttpResponse response = httpContext.Response;
+            context.Response.ContentType = "application/json";
 
-            response.ContentType = "application/json";
-            response.StatusCode = (int)httpStatusCode;
-
-            ErrorDTO errorDTO = new()
+            var error = new ErrorDTO()
             {
                 Message = message,
-                StatusCode = (int)httpStatusCode
+                StatusCode = context.Response.StatusCode
             };
 
-            string result = JsonSerializer.Serialize(errorDTO);
+            string result = JsonSerializer.Serialize(error);
 
-            await response.WriteAsJsonAsync(result);
+            await context.Response.WriteAsync(result);
         }
     }
 }
