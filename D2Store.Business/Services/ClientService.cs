@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Client;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace D2Store.Business.Services
 {
@@ -10,12 +12,15 @@ namespace D2Store.Business.Services
     {
         private readonly IClientRepository _clientRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<ClientService> _logger;
 
         public ClientService(IClientRepository clientRepository,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger<ClientService> logger)
         {
             _clientRepository = clientRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ClientDTO> AddClientAsync (ClientDTO clientDTO)
@@ -36,16 +41,18 @@ namespace D2Store.Business.Services
             return _mapper.Map<ClientDTO>(client);
         }
 
-        public async Task<ClientDTO> GetClientByIdAsync(int id)
+        public async Task<ClientDTO> GetClientByIdAsync(int clientId)
         {
-            var client = await _clientRepository.GetClientByIdAsync(id);
+            var client = await _clientRepository.GetClientByIdAsync(clientId);
+
+            client.ThrowIfNull("client", _logger, $"Client with ID: {client} does not exist!");
 
             return _mapper.Map<ClientDTO>(client);
         }
 
-        public async Task<bool> RemoveClientByIdAsync(int id)
+        public async Task<bool> RemoveClientByIdAsync(int clientId)
         {
-            return await _clientRepository.RemoveClientByIdAsync(id);
+            return await _clientRepository.RemoveClientByIdAsync(clientId);
         }
     }
 }

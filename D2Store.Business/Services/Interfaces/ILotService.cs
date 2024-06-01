@@ -18,7 +18,7 @@ namespace D2Store.Business.Services.Interfaces
 
         Task<PagedResponse<LotDTO>> GetPagedLotsAsync(int page, int pageSize);
 
-        Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO);
+        Task BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO);
 
         Task<bool> RemoveLotByIdAsync(int lotId);
 

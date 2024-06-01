@@ -93,9 +93,9 @@ namespace D2Store.Business.Services
 
         public async Task BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
         {
-            await ClientLot(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
+            await PurchaseAsync(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
 
-            await Item(buyLotRequestDTO.BuyerId);
+            await ChangeClientItemOwnerAsync(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
         }
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)
@@ -132,8 +132,7 @@ namespace D2Store.Business.Services
             };
         }
 
-        //Rename
-        private async Task ClientLot(int clientId, int lotId)
+        private async Task PurchaseAsync(int clientId, int lotId)
         {
             var client = await _clientRepository.GetClientByIdAsync(clientId);
 
@@ -157,10 +156,9 @@ namespace D2Store.Business.Services
             await _lotRepository.UpdateLotAsync(lot);
         }
         
-        //Rename
-        private async Task Item(int clientId)
+        private async Task ChangeClientItemOwnerAsync(int clientId, int lotId)
         {
-            var item = await _itemRepository.GetClientItemByIdAsync(lot.ClientItemId);
+            var item = await _itemRepository.GetClientItemByIdAsync(lotId);
 
             item.ClientId = clientId;
             await _itemRepository.UpdateClientItemAsync(item);

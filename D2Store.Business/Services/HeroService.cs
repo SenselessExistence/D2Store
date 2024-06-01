@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Hero;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Logging;
 
 namespace D2Store.Business.Services
 {
@@ -10,16 +14,24 @@ namespace D2Store.Business.Services
     {
         private readonly IHeroRepositoty _heroRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<HeroService> _logger;
 
         public HeroService(IHeroRepositoty heroRepositoty,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger<HeroService> logger)
         {
             _heroRepository = heroRepositoty;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<HeroDTO> AddHeroAsync(HeroDTO heroDTO)
         {
+            if (heroDTO.HeroName.Length == 0)
+            {
+                throw new ArgumentException("Invalid hero name!");
+            }
+
             var heroToAdd = _mapper.Map<Hero>(heroDTO);
 
             var createdHero = await _heroRepository.AddHeroAsync(heroToAdd);
@@ -31,6 +43,11 @@ namespace D2Store.Business.Services
 
         public async Task<HeroDTO> UpdateHeroAsync(HeroDTO heroDTO)
         {
+            if (heroDTO.HeroName.Length == 0)
+            {
+                throw new ArgumentException("Invalid hero name!");
+            }
+
             var heroToUpdate = _mapper.Map<Hero>(heroDTO);
 
             var updatedHero = await _heroRepository.UpdateHeroByIdAsync(heroToUpdate);
@@ -44,10 +61,7 @@ namespace D2Store.Business.Services
         {
             var hero = await _heroRepository.GetHeroByIdAsync(heroId);
 
-            if (hero == null)
-            {
-                throw new Exception("Hero not found");
-            }
+            hero.ThrowIfNull("hero", _logger, $"Hero with ID: {heroId} does not exist!");
 
             var result = _mapper.Map<HeroDTO>(hero);
 
@@ -60,7 +74,7 @@ namespace D2Store.Business.Services
 
             if (listHeroes.Count == 0)
             {
-                throw new Exception("Heroes not found");
+                throw new BadHttpRequestException("Heroes not found");
             }
 
             var result = _mapper.Map<List<HeroDTO>>(listHeroes);
@@ -70,6 +84,11 @@ namespace D2Store.Business.Services
 
         public async Task<bool> RemoveHeroByIdAsync(int heroId)
         {
+            if (heroId == 0)
+            {
+                throw new ArgumentException("Invalid hero ID!");
+            }
+
             return await _heroRepository.RemoveHeroByIdAsync(heroId);
         }
     }

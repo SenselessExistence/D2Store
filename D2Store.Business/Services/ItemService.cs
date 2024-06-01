@@ -46,7 +46,7 @@ namespace D2Store.Business.Services
 
             if(item == null)
             {
-                throw new Exception("Item not found");
+                throw new Exception($"Item with ID {itemId} not found!");
             }
 
             var result = _mapper.Map<ItemDTO>(item);

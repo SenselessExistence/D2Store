@@ -1,4 +1,4 @@
-﻿using D2Store.Common.DTO.ClientProfile.Service;
+﻿using D2Store.Common.DTO.ClientProfile;
 
 namespace D2Store.Business.Services.Interfaces
 {

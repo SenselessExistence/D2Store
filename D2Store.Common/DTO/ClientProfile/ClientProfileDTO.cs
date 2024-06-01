@@ -1,4 +1,4 @@
-﻿namespace D2Store.Common.DTO.ClientProfile.Service
+﻿namespace D2Store.Common.DTO.ClientProfile
 {
     public class ClientProfileDTO
     {

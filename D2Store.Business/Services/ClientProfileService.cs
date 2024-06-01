@@ -1,21 +1,27 @@
 ﻿using AutoMapper;
+using Castle.Core.Logging;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
-using D2Store.Common.DTO.ClientProfile.Service;
+using D2Store.Common.DTO.ClientProfile;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace D2Store.Business.Services
 {
-    public class ClientProfileServices : IClientProfileService
+    public class ClientProfileService : IClientProfileService
     {
         private readonly IClientProfileRepository _clientProfileRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<ClientProfileService> _logger;
 
-        public ClientProfileServices(IClientProfileRepository clientProfileRepository,
-            IMapper mapper)
+        public ClientProfileService(IClientProfileRepository clientProfileRepository,
+            IMapper mapper,
+            ILogger<ClientProfileService> logger)
         {
             _clientProfileRepository = clientProfileRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ClientProfileDTO> AddClientProfileAsync(ClientProfileDTO profileDTO)
@@ -31,11 +37,6 @@ namespace D2Store.Business.Services
         {
             var profileToUpdate = await _clientProfileRepository.GetClientProfileByIdAsync(profileDTO.ClientId);
 
-            if (profileToUpdate == null)
-            {
-                throw new Exception("Profile not found");
-            }
-            
             UpdateProfileData(profileToUpdate, profileDTO);
 
             var updatedProfile = await _clientProfileRepository.UpdateClientProfileAsync(profileToUpdate);
@@ -43,16 +44,18 @@ namespace D2Store.Business.Services
             return _mapper.Map<ClientProfileDTO>(updatedProfile);
         }
 
-        public async Task<ClientProfileDTO> GetClientProfileByIdAsync(int id)
+        public async Task<ClientProfileDTO> GetClientProfileByIdAsync(int profileId)
         {
-            var profile = await _clientProfileRepository.GetClientProfileByIdAsync(id);
+            var profile = await _clientProfileRepository.GetClientProfileByIdAsync(profileId);
+
+            profile.ThrowIfNull("profile", _logger, $"Profile with ID: {profileId} does not exist!");
 
             return _mapper.Map<ClientProfileDTO>(profile);
         }
 
-        public async Task<bool> RemoveClientProfileByIdAsync(int id)
+        public async Task<bool> RemoveClientProfileByIdAsync(int profileId)
         {
-            return await _clientProfileRepository.RemoveClientProfileByIdAsync(id);
+            return await _clientProfileRepository.RemoveClientProfileByIdAsync(profileId);
         }
 
         #region Private methods

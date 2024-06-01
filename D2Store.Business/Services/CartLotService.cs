@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Cart;
 using D2Store.Common.DTO.Lot;
