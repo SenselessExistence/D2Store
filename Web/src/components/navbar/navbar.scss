@@ -3,9 +3,20 @@
 nav {
   height: $nav-height;
   background-color: $nav-color;
-  padding: 5px 20px;
+  padding: 5px var(--padding);
   display: flex;
   flex-direction:row;
   justify-content: space-between;
   align-items: center;
+}
+
+.logo {
+  max-height: calc(#{$nav-height} - 10px);
+}
+
+.nav-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
