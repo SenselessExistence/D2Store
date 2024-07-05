@@ -17,4 +17,10 @@ root.render(
   </Provider>
 );
 
+
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload();
+});
+
+
 reportWebVitals();
