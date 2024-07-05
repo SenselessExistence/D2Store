@@ -29,7 +29,7 @@ namespace D2Store.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
         {
-            var result = await _authorizationService.Register(registerModel);
+            var result = await _authorizationService.RegisterAsync(registerModel);
 
             return Ok(result);
         }
@@ -38,7 +38,7 @@ namespace D2Store.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody]LoginModel loginModel)
         {
-            var result = await _authorizationService.Login(loginModel);
+            var result = await _authorizationService.LoginAsync(loginModel);
 
             return result == null ? Unauthorized() : Ok(result);
         }

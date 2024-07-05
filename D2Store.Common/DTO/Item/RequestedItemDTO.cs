@@ -1,6 +1,6 @@
 ﻿namespace D2Store.Common.DTO.Item
 {
-    public class RequestedItemDTO : BaseDTO
+    public class RequestedItemDTO
     {
         public int ItemId { get; set; }
 

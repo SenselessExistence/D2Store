@@ -12,8 +12,6 @@ namespace D2Store.Domain.Entities
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        public int ClientProfileId { get; set; }
-
         public ClientProfile ClientProfile { get; set; }
 
         public List<ClientItem> ClientItems { get; set; }

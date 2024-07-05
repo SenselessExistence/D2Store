@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using D2Store.Business.Exceptions;
 using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Item;
 using D2Store.DAL.Repository.Interfaces;
 using D2Store.Domain.Entities.Items;
+using Microsoft.Extensions.Logging;
 
 namespace D2Store.Business.Services
 {
@@ -11,14 +13,17 @@ namespace D2Store.Business.Services
         private readonly IClientItemRepository _clientItemRepository;
         private readonly IClientRepository _clientRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<ClientItemService> _logger;
 
         public ClientItemService(IClientItemRepository clientItemRepository,
             IClientRepository clientRepository,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger<ClientItemService> logger)
         {
             _clientItemRepository = clientItemRepository;
             _clientRepository = clientRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ClientItemDTO> AddClientItemAsync(ClientItemDTO clientItemDTO)
@@ -26,11 +31,6 @@ namespace D2Store.Business.Services
             var itemToAdd = _mapper.Map<ClientItem>(clientItemDTO);
 
             var addedItem = await _clientItemRepository.AddClientItemAsync(itemToAdd);
-
-            if(addedItem == null)
-            {
-                throw new Exception("Somthing wrong to add item");
-            }
 
             var result = _mapper.Map<ClientItemDTO>(addedItem);
 
@@ -43,11 +43,6 @@ namespace D2Store.Business.Services
 
             var updatedItem = await _clientItemRepository.UpdateClientItemAsync(itemToUpdate);
 
-            if(updatedItem == null)
-            {
-                throw new Exception("Something wrong to update item");
-            }
-
             var result = _mapper.Map<ClientItemDTO>(updatedItem);
 
             return result;
@@ -57,10 +52,7 @@ namespace D2Store.Business.Services
         {
             var clientItem = await _clientItemRepository.GetClientItemByIdAsync(clientItemId);
 
-            if(clientItem == null)
-            {
-                throw new Exception("Client item not found");
-            }
+            clientItem.ThrowIfNull("clientItem", _logger, $"The item with ID: {clientItemId} does not exist!");
 
             var result = _mapper.Map<ClientItemDTO>(clientItem);
 
@@ -70,11 +62,8 @@ namespace D2Store.Business.Services
         public async Task<List<ClientItemDTO>> GetAllClientItemsByClientIdAsync(int clientId)
         {
             var checkClient = await _clientRepository.GetClientByIdAsync(clientId);
-            
-            if(checkClient == null)
-            {
-                throw new Exception("Invalid client id");
-            }
+
+            checkClient.ThrowIfNull("checkClient", _logger, $"The client with ID: {clientId} does not exist!");
 
             var clientItems = await _clientItemRepository.GetAllClientItemsByClientIdAsync(clientId);
 

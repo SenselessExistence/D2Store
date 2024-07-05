@@ -177,7 +177,6 @@ namespace D2Store.Business.Tests.Services
 
             ClientItemDTO clientItemDTO = new ClientItemDTO
             {
-                Id = clientItem.Id,
                 ClientId = clientItem.ClientId,
                 ItemId = clientItem.ItemId
             };
@@ -190,7 +189,6 @@ namespace D2Store.Business.Tests.Services
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(clientItemId, result.Id);
         }
 
         [Fact]
@@ -220,7 +218,6 @@ namespace D2Store.Business.Tests.Services
             {
                 Id = clientId,
                 Balance = 200,
-                ClientProfileId = 1,
                 CreatedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow,
                 IsActive = true
@@ -254,13 +251,11 @@ namespace D2Store.Business.Tests.Services
                 {
                     ClientId = clientItems[0].ClientId,
                     ItemId = clientItems[0].ItemId,
-                    Id = clientItems[0].Id
                 },
                 new ClientItemDTO
                 {
                     ClientId = clientItems[1].ClientId,
                     ItemId = clientItems[1].ItemId,
-                    Id = clientItems[1].Id
                 }
             };
 
@@ -275,10 +270,8 @@ namespace D2Store.Business.Tests.Services
             Assert.NotNull(client);
             Assert.NotNull(result);
             Assert.Equal(clientItemDTOs.Count, result.Count);
-            Assert.Equal(clientItemDTOs[0].Id, result[0].Id);
             Assert.Equal(clientItemDTOs[0].ClientId, result[0].ClientId);
             Assert.Equal(clientItemDTOs[0].ItemId, result[0].ItemId);
-            Assert.Equal(clientItemDTOs[1].Id, result[1].Id);
             Assert.Equal(clientItemDTOs[1].ClientId, result[1].ClientId);
             Assert.Equal(clientItemDTOs[1].ItemId, result[1].ItemId);
         }

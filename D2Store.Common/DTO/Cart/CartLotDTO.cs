@@ -1,6 +1,6 @@
 ﻿namespace D2Store.Common.DTO.Cart
 {
-    public class CartLotDTO : BaseDTO
+    public class CartLotDTO
     {
         public string PictureURL { get; set; }
 

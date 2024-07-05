@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using D2Store.Common.DTO.ClientProfile.ClientProfileResponse;
-using D2Store.Common.DTO.ClientProfile.Service;
+using D2Store.Common.DTO.ClientProfile;
 using D2Store.Domain.Entities;
 
 namespace D2Store.AutoMapperProfiles
@@ -9,13 +8,7 @@ namespace D2Store.AutoMapperProfiles
     {
         public ClientProfileMapperProfile()
         {
-            CreateMap<ClientProfileDTO, CreateClientProfileResponse>();
-
-            CreateMap<ClientProfileDTO, UpdateClientProfileResponse>();
-
             CreateMap<ClientProfile, ClientProfileDTO>();
-
-            CreateMap<ClientProfileDTO, GetClientProfileResponse>();
         }
     }
 }

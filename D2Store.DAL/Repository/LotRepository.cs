@@ -11,7 +11,6 @@ namespace D2Store.DAL.Repository
         public LotRepository(DataContext context) 
             : base(context)
         {
-            
         }
 
 
@@ -32,6 +31,7 @@ namespace D2Store.DAL.Repository
         {
             var clientLots = await _context.Lots
                 .Where(l => l.SellerClientId == clientId)
+                .OrderBy(l => l.Price)
                 .ToListAsync();
 
             return clientLots;
@@ -39,21 +39,21 @@ namespace D2Store.DAL.Repository
 
         public async Task<List<Lot>> GetFilteredLotsAsync(LotFiltersRequestDTO lotFilters)
         {
-            var query = _context.Lots.AsQueryable();
+            var query = _context.Lots
+                .Include(l => l.ClientItem)
+                    .ThenInclude(ci => ci.Item)
+                    .ThenInclude(i => i.Hero)
+                    .AsQueryable();
 
             if (!string.IsNullOrEmpty(lotFilters.HeroName))
             {
-                query = query.Include(l => l.ClientItem)
-                    .ThenInclude(ci => ci.Item)
-                    .ThenInclude(i => i.Hero)
+                query = query
                     .Where(l => l.ClientItem.Item.Hero.HeroName.Contains(lotFilters.HeroName));
-                    
             }
 
             if (!string.IsNullOrEmpty(lotFilters.ItemName))
             {
-                query = query.Include(l => l.ClientItem)
-                    .ThenInclude(ci => ci.Item)
+                query = query
                     .Where(l => l.ClientItem.Item.ItemName.Contains(lotFilters.ItemName));
             }
 
@@ -62,17 +62,14 @@ namespace D2Store.DAL.Repository
                 query = query.Where(l => l.Price >= lotFilters.MinPrice.Value);
             }
             
-            if(lotFilters.MaxPrice.HasValue)
+            if (lotFilters.MaxPrice.HasValue)
             {
                 query = query.Where(l => l.Price <= lotFilters.MaxPrice.Value);
             }
 
-            if(lotFilters.Rarity.HasValue)
+            if (lotFilters.Rarity.HasValue)
             {
-                query = query.Include(l => l.ClientItem)
-                    .ThenInclude(ci => ci.Item)
-                    .Where(l => l.ClientItem.Item.Rarity == lotFilters.Rarity);
-                    
+                query = query.Where(l => l.ClientItem.Item.Rarity == lotFilters.Rarity);
             }
 
             return await query.ToListAsync();
@@ -81,6 +78,16 @@ namespace D2Store.DAL.Repository
         public async Task<Lot> GetLotByIdAsync(int id)
         {
             return await GetByIdAsync(id);
+        }
+
+        public async Task<int> GetLotsCountAsync()
+        {
+            return await _context.Lots.CountAsync();
+        }
+
+        public IQueryable<Lot> GetLotsQueryable()
+        {
+            return _context.Lots.AsQueryable();
         }
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)

@@ -1,9 +1,14 @@
 ﻿using AutoMapper;
 using D2Store.Business.Services.Interfaces;
+using D2Store.Common.DTO;
 using D2Store.Common.DTO.Lot;
+using D2Store.DAL.Extensions;
 using D2Store.DAL.Repository.Interfaces;
+using D2Store.Domain.Entities;
+using D2Store.Domain.Entities.Items;
 using D2Store.Domain.Entities.Lots;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace D2Store.Business.Services
@@ -73,35 +78,24 @@ namespace D2Store.Business.Services
             return result;
         }
 
-        public async Task<bool> BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
+        public async Task<PagedResponse<LotDTO>> GetPagedLotsAsync(int page, int pageSize)
         {
-            var user = await _clientRepository.GetClientByIdAsync(buyLotRequestDTO.BuyerId);
+            var totalCount = await _lotRepository.GetLotsCountAsync();
 
-            var lot = await _lotRepository.GetLotByIdAsync(buyLotRequestDTO.LotId);
+            var lots = await _lotRepository.GetLotsQueryable()
+                                     .Paginate(page, pageSize)
+                                     .ToListAsync();
 
-            var item = await _itemRepository.GetClientItemByIdAsync(lot.ClientItemId);
+            var lotDTOs = _mapper.Map<List<LotDTO>>(lots);
 
-            if (!lot.IsActive)
-            {
-                throw new Exception("Lot is not active.");
-            }
+            return CreatePagedResponseAsync(totalCount, lotDTOs);
+        }
 
-            if(user.Balance < lot.Price)
-            {
-                throw new Exception("Insufficient funds on account.");
-            }
+        public async Task BuyLotAsync(BuyLotRequestDTO buyLotRequestDTO)
+        {
+            await PurchaseAsync(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
 
-            user.Balance -= lot.Price;
-            await _clientRepository.UpdateClientAsync(user);
-
-            item.ClientId = buyLotRequestDTO.BuyerId;
-            await _itemRepository.UpdateClientItemAsync(item);
-
-            lot.SellDate = DateTime.Now;
-            lot.IsActive = false;
-            await _lotRepository.UpdateLotAsync(lot);
-
-            return true;
+            await ChangeClientItemOwnerAsync(buyLotRequestDTO.BuyerId, buyLotRequestDTO.LotId);
         }
 
         public async Task<bool> RemoveLotByIdAsync(int lotId)
@@ -127,5 +121,48 @@ namespace D2Store.Business.Services
 
             return result;
         }
+
+        #region Private methods
+        private PagedResponse<LotDTO> CreatePagedResponseAsync(int totalCount, List<LotDTO> lotDTOs)
+        {
+            return new PagedResponse<LotDTO>
+            {
+                Data = lotDTOs,
+                TotalCount = totalCount
+            };
+        }
+
+        private async Task PurchaseAsync(int clientId, int lotId)
+        {
+            var client = await _clientRepository.GetClientByIdAsync(clientId);
+
+            var lot = await _lotRepository.GetLotByIdAsync(lotId);
+
+            if (!lot.IsActive)
+            {
+                throw new Exception("Lot is not active.");
+            }
+
+            if (client.Balance < lot.Price)
+            {
+                throw new Exception("Insufficient funds on account.");
+            }
+
+            client.Balance -= lot.Price;
+            await _clientRepository.UpdateClientAsync(client);
+
+            lot.SellDate = DateTime.Now;
+            lot.IsActive = false;
+            await _lotRepository.UpdateLotAsync(lot);
+        }
+        
+        private async Task ChangeClientItemOwnerAsync(int clientId, int lotId)
+        {
+            var item = await _itemRepository.GetClientItemByIdAsync(lotId);
+
+            item.ClientId = clientId;
+            await _itemRepository.UpdateClientItemAsync(item);
+        }
+        #endregion
     }
 }

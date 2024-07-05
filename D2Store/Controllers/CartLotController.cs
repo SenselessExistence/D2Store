@@ -3,6 +3,7 @@ using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Cart;
 using D2Store.Common.DTO.Lot;
 using D2Store.Domain.Entities.Lots;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices.JavaScript;

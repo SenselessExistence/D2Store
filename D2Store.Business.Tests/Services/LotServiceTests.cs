@@ -70,7 +70,6 @@ namespace D2Store.Business.Tests.Services
             //Arrange
             var lotDTO = new LotDTO
             {
-                Id = 1,
                 ClientItemId = 2,
                 Price = 250,
                 SellerClientId = 2
@@ -78,7 +77,6 @@ namespace D2Store.Business.Tests.Services
 
             var lot = new Lot
             {
-                Id = lotDTO.Id,
                 ClientItemId = lotDTO.ClientItemId,
                 Price = lotDTO.Price,
                 SellerClientId = lotDTO.SellerClientId,
@@ -119,7 +117,6 @@ namespace D2Store.Business.Tests.Services
 
             LotDTO lotDTO = new LotDTO
             {
-                Id = lot.Id,
                 ClientItemId = lot.ClientItemId,
                 Price = lot.Price
             };
@@ -133,7 +130,6 @@ namespace D2Store.Business.Tests.Services
             //Assert
             Assert.Equal(lotDTO, result);
             Assert.Equal(lotDTO.Price, result.Price);
-            Assert.Equal(lotDTO.Id, result.Id);
             Assert.Equal(lotDTO.ClientItemId, result.ClientItemId);
         }
 
@@ -188,14 +184,12 @@ namespace D2Store.Business.Tests.Services
             {
                 new LotDTO
                 {
-                    Id = lots[0].Id,
                     ClientItemId = lots[0].ClientItemId,
                     Price = lots[0].Price,
                     SellerClientId = lots[0].SellerClientId
                 },
                 new LotDTO
                 {
-                    Id = lots[1].Id,
                     ClientItemId = lots[1].ClientItemId,
                     Price = lots[1].Price,
                     SellerClientId = lots[1].SellerClientId
@@ -211,11 +205,9 @@ namespace D2Store.Business.Tests.Services
             //Assert
             Assert.NotEmpty(result);
             Assert.Equal(lots.Count(), result.Count());
-            Assert.Equal(lotsDTO[0].Id, result[0].Id);
             Assert.Equal(lotsDTO[0].ClientItemId, result[0].ClientItemId);
             Assert.Equal(lotsDTO[0].Price, result[0].Price);
             Assert.Equal(lotsDTO[0].SellerClientId, result[0].SellerClientId);
-            Assert.Equal(lotsDTO[1].Id, result[1].Id);
             Assert.Equal(lotsDTO[1].ClientItemId, result[1].ClientItemId);
             Assert.Equal(lotsDTO[1].Price, result[1].Price);
             Assert.Equal(lotsDTO[1].SellerClientId, result[1].SellerClientId);

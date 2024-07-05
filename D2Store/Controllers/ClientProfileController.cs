@@ -1,5 +1,5 @@
 ﻿using D2Store.Business.Services.Interfaces;
-using D2Store.Common.DTO.ClientProfile.Service;
+using D2Store.Common.DTO.ClientProfile;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

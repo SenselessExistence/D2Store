@@ -1,11 +1,13 @@
 ﻿using D2Store.Business.Services.Interfaces;
 using D2Store.Common.DTO.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace D2Store.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ClientController : ControllerBase
     {

@@ -26,7 +26,8 @@ namespace D2Store.Initialization
             services.AddScoped<IAuthorizationService, AuthorizationService>();
 
             services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
-            services.AddScoped<IClientProfileService, ClientProfileServices>();
+            services.AddScoped<IClientProfileService, ClientProfileService>();
+            services.AddScoped<IClientItemRepository, ClientItemRepository>();
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IClientService, ClientService>();
@@ -54,8 +55,14 @@ namespace D2Store.Initialization
         {
             var mapperConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new ItemMapperProfile());
+                mc.AddProfile(new HeroMapperProfile());
+                mc.AddProfile(new LotMapperProfile());
+                mc.AddProfile(new RequestedItemMapperProfile());
+                mc.AddProfile(new ClientItemMapperProfile());
                 mc.AddProfile(new ClientMapperProfile());
                 mc.AddProfile(new ClientProfileMapperProfile());
+                mc.AddProfile(new CartLotMapperProfile());
             });
 
             return mapperConfig.CreateMapper();
