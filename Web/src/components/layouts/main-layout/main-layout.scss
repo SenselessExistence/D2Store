@@ -3,4 +3,6 @@
 .main-body {
   background-color: $bg-color;
   height:100%;
+  padding: 0 var(--padding);
+  padding-top: $nav-height;
 }

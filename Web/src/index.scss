@@ -3,6 +3,10 @@
 html {
   width: 100vw;
   height: 100vh;
+
+  *{
+    box-sizing:border-box;
+  }
 }
 
 body {
@@ -35,4 +39,12 @@ a{
   &:hover {
     color: white;
   }
+}
+
+.error {
+  color: rgb(255, 59, 59);
+}
+
+input {
+  font-size: 1em;
 }

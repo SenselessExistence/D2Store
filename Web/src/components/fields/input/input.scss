@@ -1,0 +1,39 @@
+@import '../../../scss/variables.scss';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 15px;
+  gap: 5px;
+
+  input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid $font-color;
+    outline: none;
+    padding: 8px 0;
+    width: 100%;
+    color: $font-color;
+  }
+
+  label {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: $font-color;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 0.75em;
+  }
+
+  .error {
+    height: 0.8em;
+    font-size: 0.8em;
+  }
+}

@@ -10,8 +10,8 @@ function Navbar() {
         <img src='/images/logo.png' className='logo' alt='logo'/>
       </div>
       <div className='nav-actions'>
-        <Link to='registration'>{t('register')}</Link> |
-        <Link to='login'>{t('login')}</Link>
+        <Link to='/registration'>{t('register')}</Link> |
+        <Link to='/login'>{t('login')}</Link>
       </div>
     </nav>
   );

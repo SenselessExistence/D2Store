@@ -11,7 +11,24 @@ const children: RouteObject[] = [
           Component: module.default
         })
       ),
-    children: []
+    children: [
+      {
+        path: 'registration',
+        lazy: () => import('../components/pages/auth-form/auth-form').then(
+          (module) => ({
+            Component: module.default
+          })
+        ),
+      },
+      {
+        path: 'login',
+        lazy: () => import('../components/pages/auth-form/auth-form').then(
+          (module) => ({
+            Component: module.default
+          })
+        ),
+      }
+    ]
   }
 ];
 

@@ -1,0 +1,19 @@
+@import '../../../scss/variables.scss';
+
+.form-layout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  background-color: $nav-color;
+  border-radius: 5px;
+  padding: 50px 40px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
