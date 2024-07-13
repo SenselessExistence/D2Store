@@ -8,6 +8,7 @@ interface InputProps {
   name: string;
   isRequired?: boolean;
   maxLength?: number;
+  minLength?: number;
   pattern?: RegExp;
 }
 const Input = (props: InputProps) => {
@@ -24,17 +25,21 @@ const Input = (props: InputProps) => {
     if (props.isRequired) {
       text += 'is required ';
     }
-    if (props.maxLength) {
+    if (props.minLength && props.maxLength){
+      text += `and should be ${props.minLength}-${props.maxLength} characters`;
+    } else if (props.minLength) {
+      text += `and should not be less than ${props.minLength} characters`;
+    } else if (props.maxLength) {
       text += `and should not exceed ${props.maxLength} characters`;
     }
     return text
-  },[props.type, props.placeholder, props.isRequired, props.maxLength]);
+  },[props.type, props.placeholder, props.isRequired, props.maxLength, props.minLength]);
   return (
     <div className='input'>
       <input
         type={props.type}
         placeholder='   '
-        {...register(props.name, { required: props.isRequired, maxLength: props.maxLength, pattern: props.pattern })}
+        {...register(props.name, { required: props.isRequired, maxLength: props.maxLength, pattern: props.pattern, minLength: props.minLength})}
       />
       <label htmlFor={props.name}>{props.placeholder}{props.isRequired ?? '*'}</label>
       <div className='error'>{errors?.[props.name] ? getErrorText() : ''}</div>

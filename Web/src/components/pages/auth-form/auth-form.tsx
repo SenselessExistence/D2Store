@@ -39,11 +39,21 @@ const AuthForm = () => {
     }
   }
   
+  const getTitle = () => {
+    if (type === AuthFormType.Login) {
+      return 'Login';
+    } else if (type === AuthFormType.Registration) {
+      return 'Registration';
+    } else {
+      return '';
+    }
+  }
 
   return (
     <div className='form-layout'>
       <FormProvider {...methods}>
       <form className='auth-form'onSubmit={methods.handleSubmit(onSubmit)}>
+        <h1>{getTitle()}</h1>
         { type === AuthFormType.Registration &&
         <Input
           type="text"
@@ -74,7 +84,7 @@ const AuthForm = () => {
           name='confirmPassword'
           />
         }
-      <button type="submit">Submit</button>
+      <button type="submit" className='auth-submit'>Submit</button>
     </form>
     </FormProvider>
     </div>
