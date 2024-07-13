@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthFormType } from '../../../enum/auth-form.type';
 import { FormValues } from '../../../types/form-values.type';
 import useAuthorization from '../../../hooks/apihooks/authorization.hook';
-import { useToken } from '../../../context/auth-context';
+import { useToken } from '../../../context/token-context';
 
 
 const AuthForm = () => {

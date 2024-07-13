@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 import "./i18n";
 import axios from 'axios';
+import { TokenProvider } from './context/token-context';
 
 function App() {
   const { i18n } = useTranslation();
-  const [init, setinit]= useState<boolean>(false);
+  const [init, setInit]= useState<boolean>(false);
 
   useEffect(()=>{
     i18n.changeLanguage(navigator.language.split('-')[0]);
@@ -14,7 +15,7 @@ function App() {
       config.baseURL = `https://localhost:44349/`;
       return config;
     });
-    setinit(true);
+    setInit(true);
   },[i18n]);
 
 
@@ -22,7 +23,9 @@ function App() {
   return (
     <>
     {init &&
-      <Outlet/>
+      <TokenProvider>
+        <Outlet/>
+      </TokenProvider>
     } 
     </>
   );
